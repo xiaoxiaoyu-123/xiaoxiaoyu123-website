@@ -6,8 +6,8 @@ export const mainTranslations = {
       explore_archive: "点击探索档案",
       ujs_year: "2024 - 至今",
       ujs_title: "桂林电子科技大学数学系 (本科)",
-      ujs_desc: "核心进化：深入研究 AI Agent 底层逻辑与分布式应用技术开发。",
-      ujs_full: "2024年进入桂林电子科技大学后，我的状态从“打基础”全面转向了“做产品”。目前，我不再满足于单纯的课本知识，而是把这里当成了探索自我，寻求发展的个人实验室。技术上，我正一头扎进LLM、AI Agent 以及 Web3 的交叉领域，尝试构建真正有用的自动化工具。除了敲代码，我也在运营自己的个人网站和公众号(ID: 江城和他的小书包)，习惯将自我思考转化为具体的产出。我的目标很清晰：拒绝按部就班的传统路线，向着适合自己的方向持续狂奔。\n\n最后，感谢你的阅读与驻足。感谢一路走来给予我启发的同路人。如果你也对我在发展的事亲感兴趣，或者有天马行空的 idea，欢迎随时 Ping 我。期待与更多同频的灵魂产生连接，一起 Build 些好玩的东西！"
+      ujs_desc: "核心进化：走向全栈学习，深入探究Agent开发应用与RPA自动化流程。",
+      ujs_full: "2024年进入桂林电子科技大学数学与应用数学专业后，我陷入了对数学专业课学习迷茫的一年，脑海里尽是“数分说的话，我一点都不明白！”。但在大二进入七院创新基地后，我开始了前端学习的旅程，从前端三件套到vue3框架，再到小程序uniapp，此间接触了许多的技术栈，也不禁感叹技术栈更新迭代之快。随着AI的迅速发展，Agent、VibeCoding等技术的出现，我开始尝试走向全栈学习，也向着Agent开发应用与RPA自动化流程的方向前进。"
     },
     evidence_verified: "EVIDENCE VERIFIED",
     click_explore: "点击探索档案",
@@ -24,17 +24,12 @@ export const mainTranslations = {
       btn_send: ">_ 发送数据",
       realname_v2: "实名通讯",
       anonymous_v2: "匿名发送",
-      success: "核心数据传输成功，博主已收到提醒。",
+      success: "核心数据传输成功，站长已收到提醒。",
       error: "通讯链路中断，请检查网络或稍后再试。",
       sending: "建立连接中..."
     },
-    projects: {
-      nj_title: "南京印象",
-      nj_desc: "下一代文化应用",
-      gz_title: "赛博广州",
-      gz_desc: "智慧城市数据大屏"
-    },
-    welcome_back: "欢迎来访，Bob Zhang",
+
+    welcome_back: "欢迎来访，Xiao xiao yu",
     guest_synced: "访客身份已同步",
     system_arch: "系统架构师 版本 2026",
     create_future: "开创未来现实",

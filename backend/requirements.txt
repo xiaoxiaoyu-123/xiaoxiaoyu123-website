@@ -4,3 +4,5 @@ sqlalchemy==2.0.35
 pymysql==1.1.1
 python-multipart==0.0.9
 openai==1.50.0
+requests==2.32.3
+user-agents==2.2.0

@@ -1,15 +1,16 @@
 """
 后端服务 — 为 xiaoxiaoyu123 个人网站提供 API
-启动：uvicorn main:app --reload --port 8000
+启动：uvicorn main:app --reload --port 8080
 """
 
-from fastapi import FastAPI, UploadFile, File, HTTPException, Query
+from fastapi import FastAPI, UploadFile, File, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import Optional, List
 from datetime import datetime
-import os, uuid, json, pymysql
+import os, uuid, json, pymysql, requests
+from user_agents import parse as parse_ua
 
 # ========== 应用初始化 ==========
 app = FastAPI(title="xiaoxiaoyu123 API", version="1.0.0")
@@ -142,6 +143,9 @@ class CommentReview(BaseModel):
     status: int  # 1=通过, -1=屏蔽
 
 
+# 敏感词列表（命中自动设为屏蔽）
+BAD_WORDS = ["政治", "违规词", "刷屏"]
+
 # 首页文章数
 ARTICLE_COUNT = 170
 
@@ -198,20 +202,24 @@ async def submit_message(form: MessageForm):
 
 @app.post("/api/chat")
 async def chat(req: ChatRequest):
-    """AI 聊天助手（需要配置 OPENAI_API_KEY）"""
+    """AI 聊天助手（通过 DeepSeek API，使用 requests 直接调用）"""
     user_msg = req.messages[-1]["content"] if req.messages else ""
 
     try:
-        from openai import OpenAI
-        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        resp = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[{"role": "system", "content": "你是xiaoxiaoyu个人网站的AI助手闲鱼，你的性格是活泼可爱俏皮的，偶尔还爱捉弄人，你会用中文回答问题。"}]
-                    + [{"role": m["role"], "content": m["content"]} for m in req.messages]
-        )
-        reply = resp.choices[0].message.content
+        headers = {
+            "Authorization": "Bearer sk-faf9aaf3b7034b23af680ce372e272a3",
+            "Content-Type": "application/json"
+        }
+        payload = {
+            "model": "deepseek-chat",
+            "messages": [{"role": "system", "content": "你是xiaoxiaoyu个人网站的AI助手闲鱼，你的性格是活泼可爱俏皮的，偶尔还爱捉弄人，你会用中文回答问题。"}]
+                      + [{"role": m["role"], "content": m["content"]} for m in req.messages]
+        }
+        resp = requests.post("https://api.deepseek.com/chat/completions", headers=headers, json=payload, timeout=30)
+        resp.raise_for_status()
+        reply = resp.json()["choices"][0]["message"]["content"]
     except Exception as e:
-        print(f"[AI接口错误] 请检查 OPENAI_API_KEY 是否配置: {e}")
+        print(f"[AI接口错误] {e}")
         reply = f"你好！我是xiaoxiaoyu的AI助手闲鱼。你说的是「{user_msg[:30]}」吗？"
 
     return {
@@ -323,20 +331,55 @@ async def get_comments(photo_id: str):
 
 
 @app.post("/api/comments")
-async def create_comment(comment: CommentCreate):
-    """用户提交新评论（默认 status=0 待审核）"""
+async def create_comment(comment: CommentCreate, request: Request):
+    """用户提交新评论（自动识别IP归属地、设备信息、敏感词过滤）"""
     conn = get_db()
     try:
+        # 1. 提取真实 IP
+        ip_address = request.headers.get("X-Forwarded-For", request.client.host)
+        if not ip_address or ip_address == "127.0.0.1":
+            ip_address = "[本地IP]"
+
+        # 2. 自动获取 IP 归属地（如果前端没传 location）
+        location = comment.location if comment.location != "未知坐标" else "未知地域"
+        if location == "未知地域" and ip_address != "[本地IP]":
+            try:
+                geo_resp = requests.get(f"http://ip-api.com/json/{ip_address}?lang=zh-CN", timeout=3).json()
+                if geo_resp.get("status") == "success":
+                    location = f"{geo_resp.get('regionName', '')} {geo_resp.get('city', '')}".strip()
+            except Exception as e:
+                print(f"[IP解析失败] {e}")
+
+        # 3. 自动识别设备信息（如果前端没传）
+        device_info = comment.device_info if comment.device_info else ""
+        if not device_info:
+            user_agent_str = request.headers.get("User-Agent", "")
+            ua = parse_ua(user_agent_str)
+            device_info = f"{ua.os.family} / {ua.browser.family}"
+
+        # 4. 敏感词检查
+        status = 0
+        for bad_word in BAD_WORDS:
+            if bad_word in comment.content:
+                status = -1
+                break
+
+        # 5. 存入数据库
         with conn.cursor() as cursor:
             sql = """INSERT INTO comments (photo_id, content, nickname, avatar, location, device_info, media_url, media_type, status)
-                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, 0)"""
+                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
             cursor.execute(sql, (
                 comment.photo_id, comment.content, comment.nickname, comment.avatar,
-                comment.location, comment.device_info, comment.media_url, comment.media_type
+                location, device_info, comment.media_url, comment.media_type, status
             ))
             conn.commit()
             new_id = cursor.lastrowid
-        return {"status": "success", "data": {"id": new_id}, "message": "评论已提交，审核后可见"}
+
+        msg = "评论已提交，审核后可见"
+        if status == -1:
+            msg = "评论提交成功，涉嫌违规已转入人工队列"
+
+        return {"status": "success", "data": {"id": new_id}, "message": msg}
     except pymysql.Error as e:
         print(f"[数据库错误] create_comment: {e}")
         raise HTTPException(status_code=500, detail="评论提交失败")
@@ -432,4 +475,4 @@ app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
 if __name__ == "__main__":
     import uvicorn
     init_db()  # 启动时自动建表
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8080, reload=True)
