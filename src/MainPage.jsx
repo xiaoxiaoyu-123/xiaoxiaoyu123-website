@@ -301,8 +301,8 @@ export default function MainPage({
                 className="text-sm md:text-base lg:text-xl text-white/60 max-w-2xl leading-relaxed mb-6 lg:mb-10 font-light"
               >
                 <span className="text-white font-bold">{t('main.bento_intro_bold', { count: articleCount })}</span> <br className="hidden md:block" />
-                <span className="text-xs md:text-sm lg:text-lg">
-                  {t('main.bento_intro_desc').split('AI Agent 构建')[0]}<span className="text-blue-400 font-bold">AI Agent </span>{t('main.bento_intro_desc').split('AI Agent 构建')[1] || t('main.bento_intro_desc').split('AI Agent')[1] || t('main.bento_intro_desc')}
+                <span className="text-xs md:text-sm lg:text-lg mt-10 block text-white/70 font-light">
+                  {t('main.bento_intro_desc')}
                 </span>
               </motion.p>
             </div>
@@ -356,15 +356,15 @@ export default function MainPage({
             className="col-span-1 row-span-1 p-0 overflow-hidden group min-h-[180px] lg:min-h-0 cursor-pointer"
           >
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-all duration-500 z-10"></div>
-            <img src="/9e1fc3c75dd45015d14c6c9d41a4969d.jpg" alt="Memory Tree Entrance" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <img src="/mc.jpg " alt="Memory Tree Entrance" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div className="absolute top-4 left-4 z-20">
                <div className="px-3 py-1 bg-cyan-500/20 backdrop-blur-md rounded-full text-[10px] font-bold border border-cyan-500/30 text-cyan-400">
-                  CORE_MEMORY // LINK
+                  CORE MEMORY // LINK
                </div>
             </div>
             <div className="absolute bottom-6 left-6 z-20">
                <h3 className="font-black text-xl lg:text-2xl text-white mb-1 uppercase tracking-tighter">{t('main.bento.gallery')}</h3>
-               <p className="text-[10px] text-white/50 font-mono tracking-widest uppercase">Digital_Garden_Archive</p>
+               <p className="text-[10px] text-white/50 font-mono tracking-widest uppercase">My Tree of Memories</p>
             </div>
           </SpotlightCard>
 
@@ -374,17 +374,17 @@ export default function MainPage({
             onClick={() => handleNav(onExploreHobbies)}
           >
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-all duration-500 z-10"></div>
-            <img src="/161b1d7f070b5496adc1bee799db17f1.jpg" alt="Hobbies Entrance" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <img src="/2026011401.jpg" alt="Hobbies Entrance" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div className="absolute top-4 left-4 z-20">
                <div className="px-3 py-1 bg-purple-500/20 backdrop-blur-md rounded-full text-[10px] font-bold border border-purple-500/30 text-purple-400">
-                  LIFE_MATRIX // SYNC
+                  LIFE MATRIX // SYNC
                </div>
             </div>
             <div className="absolute bottom-6 left-6 z-20">
                <h3 className="font-black text-xl lg:text-2xl text-white mb-1 tracking-tighter leading-tight whitespace-pre-line">
                   {t('main.bento.hobbies')}
                </h3>
-               <p className="text-[10px] text-white/50 font-mono tracking-widest uppercase">Personal_Interests_Grid</p>
+               <p className="text-[10px] text-white/50 font-mono tracking-widest uppercase">Personal Interests Grid</p>
             </div>
           </SpotlightCard>
 
@@ -455,7 +455,7 @@ export default function MainPage({
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
-              {/* 1. AI 领域 */}
+              {/* 1. 前端技术栈 领域 */}
               <SpectralCard 
                 title={t('main.expertise.ai.title')}
                 subtitle="Artificial Intelligence"
@@ -464,7 +464,7 @@ export default function MainPage({
                 borderColor="border-purple-500/20"
                 spotlightColor="rgba(168, 85, 247, 0.2)"
                 onClick={() => handleNav(() => onExploreExpertise({
-                  title: "AI 进化与知识工程",
+                  title: "前端技术栈",
                   subtitle: "Artificial Intelligence",
                   icon: <Sparkles size={28} />,
                   children: t('main.expertise.ai.desc')
@@ -473,7 +473,7 @@ export default function MainPage({
                 {t('main.expertise.ai.desc')}
               </SpectralCard>
 
-              {/* 2. RPA 领域 */}
+              {/* 2. AI辅助编程 领域 */}
               <SpectralCard 
                 title={t('main.expertise.rpa.title')}
                 subtitle="Automation Logic"
@@ -482,7 +482,7 @@ export default function MainPage({
                 borderColor="border-orange-500/20"
                 spotlightColor="rgba(249, 115, 22, 0.2)"
                 onClick={() => handleNav(() => onExploreExpertise({
-                  title: "RPA 流程自动化",
+                  title: "AI辅助编程",
                   subtitle: "Automation Logic",
                   icon: <Cpu size={28} />,
                   children: t('main.expertise.rpa.desc')
@@ -500,7 +500,7 @@ export default function MainPage({
                 borderColor="border-emerald-500/20"
                 spotlightColor="rgba(16, 185, 129, 0.2)"
                 onClick={() => handleNav(() => onExploreExpertise({
-                  title: t('main.expertise.py.title'),
+                  title: "Python后端开发",
                   subtitle: "Geek Development",
                   icon: <Terminal size={28} />,
                   children: t('main.expertise.py.desc')
@@ -518,7 +518,7 @@ export default function MainPage({
                 borderColor="border-cyan-500/20"
                 spotlightColor="rgba(34, 211, 238, 0.2)"
                 onClick={() => handleNav(() => onExploreExpertise({
-                  title: t('main.expertise.chr.title'),
+                  title: "Agent智能体开发",
                   subtitle: "Digital Chronicles",
                   icon: <History size={28} />,
                   children: t('main.expertise.chr.desc')

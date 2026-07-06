@@ -4,7 +4,7 @@ export const expertiseTranslations = {
       read_original: "阅读原文",
       view_report: "查看报告",
       read_source: "阅读源码",
-      read_chronicle: "阅读编年史",
+      read_chronicle: "深入Agent智能体开发",
       status_verified: "Status: Evidence_Verified",
       data_source: "Data_Source: WeChat_Cloud",
       integrity: "Integrity_High",

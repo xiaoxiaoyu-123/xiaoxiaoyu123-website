@@ -1,142 +1,172 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowLeft, Terminal, Cpu, Database, Network, Activity, Shield, Box, Zap, Sparkles, Code2, History, FileCode, Layers, Search, Play, CheckCircle2, FileText, ExternalLink } from 'lucide-react';
+import { X, ArrowLeft, Terminal, Cpu, Database, Network, Activity, Shield, Box, Zap, Sparkles, Code2, History, FileCode, Layers, Search, Play, CheckCircle2, FileText, ExternalLink,Send, SendHorizonalIcon } from 'lucide-react';
 import { useSyncStats } from '../hooks/useSyncStats';
 
 // Professional Summaries & Local PDF Links - Dynamic Generator
 const generateExpertiseConfig = (articleCount) => ({
-  "AI 进化与知识工程": {
+  "前端技术栈": {
     id: "AI",
     theme: { color: "text-purple-400", border: "border-purple-500/30", glow: "shadow-[0_0_30px_rgba(168,85,247,0.3)]", bgImage: "/ai_bg.png" },
     stats: [
-      { label: "Knowledge_Nodes", value: "NotebookLM / LLM", icon: <Network size={14}/> },
-      { label: "Intelligence_Level", value: "Claude Opus 4.6", icon: <Zap size={14}/> }
+      { label: "Vue", value: "ElementPlus Nuxt.js", icon: <Network size={14}/> },
+      { label: "React", value: "AntDesign Next.js", icon: <Zap size={14}/> }
     ],
     records: [
       { 
-        title: "NotebookLM 个人知识库", 
-        summary: `深度复盘如何利用 NotebookLM 的多源对齐能力，将公众号数年沉淀的 ${articleCount}+ 篇文章构建为“可对话”的第二大脑，实现知识的碎片化重组与深度对齐。`,
+        title: "Vue3框架学习", 
+        summary: `Vue3框架学习笔记，涵盖Composition API、响应式系统、路由与状态管理等核心概念，旨在帮助开发者快速掌握现代前端开发技术。`,
         date: "2024.11", 
-        pdfPath: "https://mp.weixin.qq.com/s/mgldJhWay66dqkvR_9yxZg",
-        category: "KNOWLEDGE_OPS" 
+        pdfPath: "null",
+        category: "Vue3" 
       },
       { 
-        title: "Kimi 测评实录：高冷背后的技术底座", 
-        summary: "从逻辑推理、长文本处理及视觉识别等维度，深度复盘 Kimi 大模型的实战边界与优化策略，探索其在中文语境下的极致性能表现。",
+        title: "React 18新特性探索", 
+        summary: "深入探索React 18的新特性，包括Concurrent Mode、Suspense、自动批处理等，分享在实际项目中的应用经验和性能优化技巧。",
         date: "2024.10", 
-        pdfPath: "https://mp.weixin.qq.com/s/GbrMsMtAFtc_KmNJ2Rp1PQ",
-        category: "LLM_TEST" 
+        pdfPath: "null",
+        category: "React" 
       },
       { 
-        title: "Claude Opus 接入与 Agent 编排", 
-        summary: "在 Antigravity 环境下丝滑接入 Claude Opus，分享高效 Agent 的任务编排逻辑、Prompt 链设计心得以及在复杂编码任务中的表现评估。",
+        title: "Typescript类型系统深度解析", 
+        summary: "全面解析Typescript的类型系统，包括高级类型、泛型、条件类型等，帮助开发者在大型项目中实现更安全和可维护的代码结构。",
         date: "2024.04", 
-        pdfPath: "https://mp.weixin.qq.com/s/je0usLWhdPCUDFuVjc4PFg",
-        category: "AGENT_BUILD" 
+        pdfPath: "null",
+        category: "TypeScript" 
       },
       { 
-        title: "AI 辅助内在驱动力建模", 
-        summary: "运用特定的 Prompt 引导 LLM 进行深度心理建模，协助人类探索内在动机与职业驱动力，分享一套实验性的提示词逻辑与反馈闭环。",
+        title: "Tailwind CSS实战指南", 
+        summary: "Tailwind CSS实战指南，介绍如何在现代前端项目中高效使用Tailwind进行样式设计，涵盖响应式布局、组件化设计及性能优化策略。",
         date: "2024.03", 
-        pdfPath: "https://mp.weixin.qq.com/s/OoXWTVbHBKu_dNNqrfXqDw",
-        category: "PROMPT_ENG" 
+        pdfPath: "null",
+        category: "Tailwind CSS" 
+      },
+      {
+        title: "Element Plus组件库深度使用",
+        summary: "Element Plus组件库深度使用指南，介绍如何在实际项目中高效使用该UI框架，涵盖组件特性、使用技巧及性能优化策略。",
+        date: "2024.02",
+        pdfPath: "null",
+        category: "Element Plus"
+      },
+      {
+        title: "Ant Design组件库实战",
+        summary: "Ant Design组件库实战指南，介绍如何在实际项目中高效使用该UI框架，涵盖组件特性、使用技巧及性能优化策略。",
+        date: "2024.01",
+        pdfPath: "null",
+        category: "Ant Design"
       }
     ],
     layout: "neural"
   },
-  "RPA 流程自动化": {
+  "AI辅助编程": {
     id: "RPA",
     theme: { color: "text-orange-400", border: "border-orange-500/30", glow: "shadow-[0_0_30px_rgba(249,115,22,0.3)]", bgImage: "/rpa_bg.png" },
     stats: [
-      { label: "Core_Engine", value: "ShadowBot / Octopus", icon: <Box size={14}/> },
-      { label: "Sync_Safety", value: "Feishu Verified", icon: <Shield size={14}/> }
+      { label: "OpenAI", value: "Codex", icon: <Box size={14}/> },
+      { label: "ClaudeAI", value: "Claude Code", icon: <Shield size={14}/> }
     ],
     records: [
       { 
-        title: "小红书全自动作品信息采集", 
-        summary: "详细拆解基于影刀 RPA 的自媒体数据采集工具，破解滑动验证、动态 DOM 识别及大规模并发下的频率控制等核心实战难点。",
-        date: "2024.12", 
-        pdfPath: "https://mp.weixin.qq.com/s/hclMlNh3r0eSWzpzG0zJXA",
-        status: "SUCCESS" 
+        title: "Claude Code", 
+        summary: "Claude Code 是一款基于 Claude AI 的代码生成与优化工具，旨在帮助开发者快速生成高质量代码，并提供智能化的代码审查和优化建议。",
+        date: "2026.4", 
+        pdfPath: "null",
+        status: "Claude Code" 
       },
       { 
-        title: "影刀 RPA 结缘与效率重塑", 
-        summary: "从小工具到效率支柱。记录 RPA 如何深度进入生产力流程，反思“机器替代重复劳动”对技术人思维的解放与二次赋能。",
-        date: "2024.09", 
-        pdfPath: "https://mp.weixin.qq.com/s/L5H2-4rB34hWBb47AGAyUw",
-        status: "LEGACY" 
+        title: "Codex", 
+        summary: "Codex 是 OpenAI 推出的强大代码生成模型，能够理解自然语言描述并生成相应的代码，支持多种编程语言，广泛应用于自动化脚本、代码补全和开发辅助工具。",
+        date: "2026.5", 
+        pdfPath: "null",
+        status: "Codex" 
       },
       { 
-        title: "RPA 选型：影刀 vs 八爪鱼", 
-        summary: "多维度对比本地控制流与云端爬虫的适用边界，涵盖成本、稳定性、开发难度及复杂交互处理能力的深度实测分析。",
-        date: "2024.08", 
-        pdfPath: "https://mp.weixin.qq.com/s/7BmfvGxrSJx4qkYWj6G5tg",
-        status: "ANALYSIS" 
+        title: "CurSor", 
+        summary: "CurSor 是一款智能化的代码导航与编辑工具，利用 AI 技术帮助开发者快速定位代码片段、理解代码逻辑，并提供智能化的编辑建议和自动补全功能。",
+        date: "2026.01", 
+        pdfPath: "null",
+        status: "CurSor" 
       },
       { 
-        title: "RPA 实战案例落地选集", 
-        summary: "将 RPA 真正应用到复杂业务流。分享从流程逻辑建模到实操脚本落地的全生命周期管理，助力企业实现跨系统的全链路自动化。",
-        date: "2024.03", 
-        pdfPath: "https://mp.weixin.qq.com/s/zTdkrgKr-XD_O8oWCyQPOQ",
-        status: "INTEGRATED" 
+        title: "Trae", 
+        summary: "Trae 是一款基于 AI 的代码追踪与分析工具，能够实时监控代码执行路径，帮助开发者快速定位问题、优化性能，并提供可视化的代码分析报告。",
+        date: "2025.11", 
+        pdfPath: "null",
+        status: "Trae" 
       }
     ],
     layout: "dashboard"
   },
-  "Python 极客实验室": {
+  "Python后端开发": {
     id: "PY",
     theme: { color: "text-emerald-400", border: "border-emerald-500/30", glow: "shadow-[0_0_30px_rgba(16,185,129,0.3)]", bgImage: "/python_bg.png" },
     stats: [
-      { label: "Logic_Engine", value: "Manim / Scrapy", icon: <Layers size={14}/> },
-      { label: "System_Guard", value: "Terminal Safety", icon: <Shield size={14}/> }
+      { label: "Python", value: "FastAPI", icon: <Layers size={14}/> },
+      { label: "Java", value: "Spring Boot", icon: <Shield size={14}/> }
     ],
     records: [
       { 
-        title: "Manim 数学动效编程实战", 
-        summary: "探索 Manim 引擎在几何演化、矢量场动画中的极致应用，分享三维空间逻辑构建、函数曲线动态渲染的 Python 源码级心得。",
-        pdfPath: "https://mp.weixin.qq.com/s/cgK6vK1GTLfO6ZYOmaUDqw",
-        type: "VISUAL", complexity: "HIGH" 
+        title: "Python", 
+        summary: "Python 是一种高级编程语言，具有简洁的语法和强大的库支持，广泛应用于数据分析、人工智能、Web开发等领域。",
+        pdfPath: "null",
+        type: "Programming", complexity: "Python" 
       },
       { 
-        title: "终端输错误删事故告诫录", 
-        summary: "诚恳记录一次 Linux 环境下的“rm 误删惊魂”，深度复盘权限分级、alias 灾备配置及在事故中保持冷静处理的技术人修养。",
-        pdfPath: "https://mp.weixin.qq.com/s/mv_yYcpKBlNVAmHVM4kxSg",
-        type: "SAFETY", complexity: "CRITICAL" 
+        title: "MySQL", 
+        summary: "MySQL 是一种开源关系型数据库管理系统，广泛应用于Web应用和数据存储，支持高性能查询和事务处理。",
+        pdfPath: "null",
+        type: "Database", complexity: "MySQL" 
       },
       { 
-        title: "Python 环境冲突填坑指南", 
-        summary: "针对版本不连贯导致的依赖地狱，复盘 pyenv 与 poetry 的实战部署方案，解决由于编译器环境导致的“Python 版本过高”报错陷阱。",
-        pdfPath: "https://mp.weixin.qq.com/s/g16TYoXiWDarww2-qdqzMw",
-        type: "CONFIG", complexity: "MID" 
+        title: "Redis", 
+        summary: "Redis 是一个开源的内存数据结构存储系统，常用于缓存、消息队列和实时分析等场景。",
+        pdfPath: "null",
+        type: "Database", complexity: "Redis" 
+      },
+      {
+        title: "FastAPI",
+        summary: "FastAPI 是一个现代、快速（高性能）的 Web 框架，基于 Python 3.7+ 类型提示构建，支持自动生成 API 文档和数据验证。",
+        pdfPath: "null",
+        type: "Framework", complexity: "FastAPI"
       }
     ],
     layout: "ide"
   },
-  "数字成长编年史": {
+  "Agent智能体开发": {
     id: "CHR",
     theme: { color: "text-cyan-400", border: "border-cyan-500/30", glow: "shadow-[0_0_30px_rgba(34,211,238,0.3)]", bgImage: "/chronicle_bg.png" },
     stats: [
-      { label: "Time_Span", value: "8 Years Archive", icon: <History size={14}/> },
-      { label: "Article_Count", value: `${articleCount}+ Deep Docs`, icon: <Search size={14}/> }
+      { label: "Agent", value: "LLM  Prompt Engineering", icon: <History size={14}/> },
+      { label: "Progressive", value: 'Tool  RAG', icon: <Search size={14}/> }
     ],
     records: [
       { 
-        title: "2025 年度总结：在于未知中寻找方向", 
-        summary: "这是思维进化的最新里程碑。在文章中，我全面复盘了在 AI Agent 大爆发时代的自我认知重构。分享了如何通过 NotebookLM 与大语言模型（如 Claude Opus、Kimi），将过去几十篇分散的技术随笔整合成具有驱动力的极客‘第二大脑’与数字分身。",
-        year: "2025", era: "AI_ERA",
-        pdfPath: "https://mp.weixin.qq.com/s/AthqzUcE6kNg3ZsF7SXPjQ"
+        title: "LLM API基础", 
+        summary: "基础的 LLM API 使用指南，涵盖模型调用、参数配置、响应处理等核心概念，帮助开发者快速上手大语言模型的集成与应用。",
+        year: "2026.8", 
+        era: "AI_ERA",
+        pdfPath: "null"
       },
       { 
-        title: "大学生活日纪：江大计算机随笔", 
-        summary: "凝固了在江苏大学计算机工程系攻坚克难的真实影像。从初探 Python 高级爬虫、Manim 引擎开发，到将 RPA 自动化融入影刀与飞书，每一篇随笔不仅记录了代码流，更是从纯粹开发向架构思维跃迁的硬核证据链。",
-        year: "2022", era: "UNIVERSITY_ERA",
-        pdfPath: "/archives/大学生活日纪.pdf"
+        title: "Prompt Engineering", 
+        summary: "深入的 Prompt Engineering 技术解析，介绍如何设计高效的提示语以优化大语言模型的输出质量和准确性，提升 AI 应用的智能化水平。",
+        year: "2026.9",
+        era: "AI_ERA",
+        pdfPath: "null"
       },
       { 
-        title: "万宁中学往事：极客基因的萌芽", 
-        summary: `一切探索的源点（Genesis Node）。生动回溯了早在万宁中学的那段求学岁月，记载着在有限的信息空间里，由少年锐气与对计算机二进制逻辑的初次触电所锻造出的原始驱动力。这是 ${articleCount} 篇连载中最纯粹的起点档案。`,
-        year: "2018", era: "GENESIS_ERA",
-        pdfPath: "/archives/海南万宁中学档案.pdf"
+        title: "Tool Use and Function Calling", 
+        summary: `详细的工具使用与函数调用指南，涵盖如何在大语言模型中集成外部工具和服务，实现复杂任务的自动化处理和智能化决策。`,
+        year: "2026.10",
+        era: "AI_ERA",
+        pdfPath: "null"
+      },
+      {
+        title: "RAG知识库检索",
+        summary: "RAG（Retrieval-Augmented Generation）知识库检索技术解析，介绍如何结合检索机制与生成模型，实现高效的信息获取和智能化内容生成。",
+        year: "2026.11",
+        era: "AI_ERA",
+        pdfPath: "null"
       }
     ],
     layout: "timeline"
@@ -198,7 +228,7 @@ export default function ExpertiseArchive({ expertise, onBack }) {
                     <span>INDEX: {i + 1}</span>
                     <span>TIMESTAMP: {record.date}</span>
                   </div>
-                  <span className="group-hover:text-white transition-colors">SOURCE_AUTHENTICATED ✓</span>
+                  <span className="group-hover:text-white transition-colors"> Source Authenticated ✓</span>
                 </div>
               </motion.div>
             ))}
@@ -229,8 +259,8 @@ export default function ExpertiseArchive({ expertise, onBack }) {
                    </div>
                 </div>
                 <button className="flex items-center gap-3 px-6 py-3 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 hover:bg-orange-500 hover:text-white transition-all whitespace-nowrap">
-                   <span className="text-xs font-bold uppercase tracking-widest">查看报告</span>
-                   <FileText size={16} />
+                   <span className="text-xs font-bold uppercase tracking-widest">开始探索</span>
+                   <SendHorizonalIcon size={16} className="-rotate-45" />
                 </button>
               </motion.div>
             ))}
@@ -242,7 +272,7 @@ export default function ExpertiseArchive({ expertise, onBack }) {
              <div className="w-full md:w-80 border-r border-white/5 p-6 flex flex-col gap-3 font-mono text-xs text-white/40">
                 <div className="flex items-center gap-2 mb-6 text-white/60">
                    <Search size={16} className="text-emerald-400" />
-                   <span className="tracking-widest">SRC // GEEK_LOGS</span>
+                   <span className="tracking-widest">Src//Geek_Logs</span>
                 </div>
                 {config.records.map((record, i) => (
                   <motion.div 
@@ -300,7 +330,7 @@ export default function ExpertiseArchive({ expertise, onBack }) {
                      <span className="text-4xl font-black text-white group-hover:text-cyan-400 transition-colors tracking-tighter">{record.year}</span>
                      <div className="px-4 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[10px] font-black tracking-[0.2em] uppercase">{record.era}</div>
                      <div className="flex items-center gap-2 text-white/20 group-hover:text-cyan-400 transition-colors ml-auto md:ml-0">
-                        <span className="text-[10px] font-mono">阅读编年史</span>
+                        <span className="text-[10px] font-mono">深入Agent智能体开发</span>
                         <ExternalLink size={14} />
                      </div>
                   </div>
@@ -337,7 +367,7 @@ export default function ExpertiseArchive({ expertise, onBack }) {
               <span className="text-[11px] font-black text-white/20 tracking-[0.5em] uppercase">Status: Evidence_Verified</span>
               <div className="flex items-center gap-3">
                 <div className={`w-3 h-3 rounded-full ${config.theme.color.replace('text', 'bg')} animate-pulse`}></div>
-                <span className="text-xs font-mono text-white/60 tracking-widest uppercase">Data_Source: WeChat_Cloud</span>
+                <span className="text-xs font-mono text-white/60 tracking-widest uppercase">Data_Source: AI WEBSITE</span>
               </div>
             </div>
           </div>
@@ -369,7 +399,7 @@ export default function ExpertiseArchive({ expertise, onBack }) {
               </div>
               <div className="mt-12 p-6 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center gap-3 text-white/30 text-[10px] uppercase tracking-widest font-bold grayscale hover:grayscale-0 transition-all cursor-crosshair">
                 <Sparkles size={14} />
-                <span>Deep_Analysis_Active</span>
+                <span>Deep_Use_AI</span>
               </div>
             </div>
           </motion.div>
@@ -382,7 +412,7 @@ export default function ExpertiseArchive({ expertise, onBack }) {
             <div className="flex items-center justify-between px-4 mb-4">
                <div className="flex items-center gap-4">
                   <div className="w-10 h-px bg-white/20"></div>
-                  <span className="text-xs font-black text-white/60 tracking-[0.4em] uppercase">Insight_Archive</span>
+                  <span className="text-xs font-black text-white/60 tracking-[0.4em] uppercase">VibeCoding Agent </span>
                </div>
                <span className="text-[10px] font-mono text-white/20 uppercase tracking-[0.2em]">ACCESS_ONLINE_ARTICLE</span>
             </div>

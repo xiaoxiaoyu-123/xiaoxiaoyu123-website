@@ -31,22 +31,22 @@ export const mainTranslations = {
 
     welcome_back: "欢迎来访，Xiao xiao yu",
     guest_synced: "访客身份已同步",
-    system_arch: "系统架构师 版本 2026",
+    system_arch: "全栈开发 版本 2026",
     create_future: "开创未来现实",
     geek_profile_title: "极客画像 // GEEK_PROFILE",
     traits: {
-      t1: "长期主义者", h1: "8载数字档案沉淀",
+      t1: "理想主义者", h1: "技术理想主义",
       t2: "自动化优先", h2: "RPA 与效率工程",
       t3: "视觉逻辑控", h3: "Manim 动效与 UI",
-      t4: "代码诚实者", h4: "技术真诚主义"
+      t4: "AI忠实拥护", h4: "Agent 与 VibeCoding",
     },
     building_future: "正在构建未来",
     hello_im: "Hello, I'm",
-    bento_intro_bold: "桂林电子科技大学 | 全栈学习  |{{count}}+ 原创随笔。",
-    bento_intro_desc: "全栈学习者，从前端走向全栈开发，学习传统前后端技术栈，探索Agent和VibeCoding的结合。学习成长中，梦想是成为闲鱼，拥有躺平的一生！",
-    stats_count: "{{count}}+ 篇",
+    bento_intro_bold: "桂林电子科技大学 | 全栈学习  | 30+ 原创随笔。",
+    bento_intro_desc: "全栈路上的终身学习者，从前端出发，一路向全栈纵深，既啃传统前后端技术栈，也沉迷 Agent 与 VibeCoding 的 AI 新可能。成长中，偶尔仰望星空——梦想是成为闲鱼，在技术江湖里练就一身本事，然后心安理得地躺平一生。",
+    stats_count: "30+篇",
     stats_deep: "深度技术随笔",
-    stats_8: "8 载",
+    stats_8: "two years",
     stats_geek_records: "极客成长记录",
     core_tech: "核心技术",
     tech_stack: "技术栈",
@@ -57,12 +57,12 @@ export const mainTranslations = {
     explore_school: "了解更多关于学校的背景与时间线",
     click_details: "点击查看详情",
     geek_matrix: "极客深度矩阵",
-    geek_matrix_desc: "{{count}}+ 原创技术随笔按领域解构与重组",
+    geek_matrix_desc: "从像素到参数，从接口到智能",
     expertise: {
-      ai: { title: "AI 进化与知识工程", desc: "深耕大语言模型生态，沉淀了 30+ 篇关于 Claude、Kimi 及 NotebookLM 的评测与实战日记，成功构建了基于 AI 的个人化知识链路。" },
-      rpa: { title: "RPA 流程自动化", desc: "打通影刀、八爪鱼与飞书多维表格闭环。拥有 50+ 篇 RPA 实战记录，涵盖小红书、抖音等平台的高级自动化采集与跨系统同步逻辑。" },
-      py: { title: "Python 极客实验室", desc: "专注高级爬虫架构、Manim 数学动效编程与系统脚本开发。通过 20+ 篇深度技术复盘，建立了从底层逻辑到高效率开发的心法体系。" },
-      chr: { title: "数字成长编年史", desc: "这是我作为极客的真实底片。{{count}} 篇公众号文章记录了从万宁中学到江苏大学计算机系的思维跃迁，也是我持续思考与迭代的活化石。" }
+      ai: { title: "前端技术栈", desc: "深入掌握现代前端技术体系：以 React、Vue 等主流框架为核心，精通 TypeScript 类型编程，熟练运用 Tailwind CSS 构建高效样式方案，并具备 Element Plus / Ant Design 等企业级组件库的实际开发经验；同时熟悉 Vite、ESLint、Prettier 等工程化工具，持续优化代码质量与开发体验。" },
+      rpa: { title: "AI 辅助编程", desc: "聚焦VibeCoding这一前沿开发模式，深入研究Claude Code、Codex、Cursor、Trae等头部AI辅助工具的实际应用场景与提效潜力，探索AI驱动下的开发新范式。" },
+      py: { title: "Python后端开发", desc: "以Python语言为起点，系统整合MySQL与Redis等数据层技术，通过FastAPI框架快速搭建RESTful API，形成一套从零到一的后端开发能力体系。" },
+      chr: { title: "Agent智能体开发", desc: "从LLM API基础出发，系统掌握Prompt Engineering，深入Tool Use与Function Calling，构建RAG知识库检索能力，逐步建立工程化思维与框架意识，最终具备将项目真正落地的实战能力。" }
     },
     welcome: {
       title: "欢迎来到xiaoxiaoyu的世界",
@@ -79,74 +79,70 @@ export const mainTranslations = {
       subtitle: "Education",
       explore_archive: "點擊探索檔案",
       ujs_year: "2024 - 至今",
-      ujs_title: "江蘇大學 電腦系 (大學)",
-      ujs_desc: "核心進化：深入研究 AI Agent 底層邏輯與分佈式應用技術開發。",
-      ujs_full: "作為核心進化地，這裡不僅是學術的殿堂，更是 AI Agent 實戰的實驗室。在這裡，我專注於分佈式系統、認知建模以及如何利用大型語言模型構建下一代智能化輔助工具。通過對分佈式應用技術的探索，我正致力於打通去中心化應用與 AI 智慧體之間的價值鏈路。"
+      ujs_title: "桂林電子科技大學數學系 (本科)",
+      ujs_desc: "核心進化：走向全棧學習，深入探究Agent開發應用與RPA自動化流程。",
+      ujs_full: "2024年進入桂林電子科技大學數學與應用數學專業後，我陷入了對數學專業課學習迷茫的一年，腦海裡盡是「數分說的話，我一點都不明白！」。但在大二進入七院創新基地後，我開始了前端學習的旅程，從前端三件套到vue3框架，再到小程序uniapp，此間接觸了許多的技術棧，也不禁感嘆技術棧更新迭代之快。隨著AI的迅速發展，Agent、VibeCoding等技術的出現，我開始嘗試走向全棧學習，也向著Agent開發應用與RPA自動化流程的方向前進。"
     },
+    evidence_verified: "EVIDENCE VERIFIED",
+    click_explore: "點擊探索檔案",
     contact: {
-      title: "聯繫終端",
+      title: "點擊聯繫我",
       hotline: "直連熱線",
       encrypted: "加密通道",
       label_name: "收到代號 [姓名]",
-      placeholder_name: "輸入您的身分代號",
-      label_email: "通訊頻段 [信箱]",
+      placeholder_name: "輸入您的身份代號",
+      label_email: "通訊頻段 [郵箱]",
       placeholder_email: "加密頻道@...",
-      label_msg: "核心資訊 [留言]",
-      placeholder_msg: "正在準備傳輸資料...",
-      btn_send: ">_ 發送資料",
+      label_msg: "核心信息 [留言]",
+      placeholder_msg: "正在準備傳輸數據...",
+      btn_send: ">_ 發送數據",
       realname_v2: "實名通訊",
       anonymous_v2: "匿名發送",
-      success: "核心數據傳輸成功，博主已收到提醒。",
-      error: "通訊鏈路中斷，請檢查網路或稍後再試。",
+      success: "核心數據傳輸成功，站長已收到提醒。",
+      error: "通訊鏈路中斷，請檢查網絡或稍後再試。",
       sending: "建立連接中..."
     },
-    projects: {
-      nj_title: "南京印象",
-      nj_desc: "下一代文化應用",
-      gz_title: "賽博廣州",
-      gz_desc: "智慧城市資料大螢幕"
-    },
-    welcome_back: "歡迎來訪，Bob Zhang",
+    welcome_back: "歡迎來訪，Xiao xiao yu",
     guest_synced: "訪客身份已同步",
-    system_arch: "系統架構師 版本 2026",
+    system_arch: "全棧開發 版本 2026",
     create_future: "開創未來現實",
     geek_profile_title: "極客畫像 // GEEK_PROFILE",
     traits: {
-      t1: "長期主義者", h1: "8載數位檔案沉澱",
+      t1: "理想主義者", h1: "技術理想主義",
       t2: "自動化優先", h2: "RPA 與效率工程",
       t3: "視覺邏輯控", h3: "Manim 動效與 UI",
-      t4: "程式碼誠實者", h4: "技術真誠主義"
+      t4: "AI忠實擁護", h4: "Agent 與 VibeCoding",
     },
     building_future: "正在構建未來",
     hello_im: "Hello, I'm",
-    bento_intro_bold: "江大電腦系學子 | AI Agent 開發者 | {{count}}+ 原創隨筆。",
-    bento_intro_desc: "主攻 AI Agent 構建 與深度應用，在工程背景下深扎 RPA 自動化與 Python 實操。8 載檔案沉澱，每一個像素都是邏輯與成長的註腳。",
-    stats_count: "{{count}}+ 篇",
+    bento_intro_bold: "桂林電子科技大學 | 全棧學習 | 30+ 原創隨筆。",
+    bento_intro_desc: "全棧路上的終身學習者，從前端出發，一路向全棧縱深，既啃傳統前後端技術棧，也沉迷 Agent 與 VibeCoding 的 AI 新可能。成長中，偶爾仰望星空——夢想是成為閒魚，在技術江湖裡練就一身本事，然後心安理得地躺平一生。",
+    stats_count: "30+篇",
     stats_deep: "深度技術隨筆",
-    stats_8: "8 載",
+    stats_8: "two years",
     stats_geek_records: "極客成長記錄",
     core_tech: "核心技術",
     tech_stack: "技術棧",
     tags: {
-      t1: "核心驅動", t2: "邏輯視覺化", t3: "效率工程", t4: "高階互動", t5: "底層系統"
+      t1: "核心驅動", t2: "邏輯可視化", t3: "效率工程", t4: "高階交互", t5: "底層系統"
     },
     core_archives: "核心檔案庫",
     explore_school: "了解更多關於學校的背景與時間線",
     click_details: "點擊查看詳情",
     geek_matrix: "極客深度矩陣",
-    geek_matrix_desc: "{{count}}+ 原創技術隨筆按領域解構與重組",
+    geek_matrix_desc: "從像素到參數，從接口到智能",
     expertise: {
-      ai: { title: "AI 進化與知識工程", desc: "深耕大型語言模型生態，沉澱了 30+ 篇關於 Claude、Kimi 及 NotebookLM 的評測與實戰日記，成功構建了基於 AI 的個人化知識鏈路。" },
-      rpa: { title: "RPA 流程自動化", desc: "打通影刀、八爪魚與飛書多維表格閉環。擁有 50+ 篇 RPA 實戰記錄，涵蓋小紅書、抖音等平台的高級自動化採集與跨系統同步邏輯。" },
-      py: { title: "Python 極客實驗室", desc: "專注高級爬蟲架構、Manim 數學動效編程與系統腳本腳本開發。通過 20+ 篇深度技術復盤，建立了從底層邏輯到高效率開發的心法體系。" },
-      chr: { title: "數位成長編年史", desc: "這是我作為極客的真實底片。{{count}} 篇公眾號文章記錄了從萬寧中學到江蘇大學電腦系的思維躍遷，也是我持續思考與迭代的活化石。" }
+      ai: { title: "前端技術棧", desc: "深入掌握現代前端技術體系：以 React、Vue 等主流框架為核心，精通 TypeScript 類型編程，熟練運用 Tailwind CSS 構建高效樣式方案，並具備 Element Plus / Ant Design 等企業級組件庫的實際開發經驗；同時熟悉 Vite、ESLint、Prettier 等工程化工具，持續優化代碼質量與開發體驗。" },
+      rpa: { title: "AI 輔助編程", desc: "聚焦VibeCoding這一前沿開發模式，深入研究Claude Code、Codex、Cursor、Trae等頭部AI輔助工具的實際應用場景與提效潛力，探索AI驅動下的開發新範式。" },
+      py: { title: "Python後端開發", desc: "以Python語言為起點，系統整合MySQL與Redis等數據層技術，通過FastAPI框架快速搭建RESTful API，形成一套從零到一的後端開發能力體系。" },
+      chr: { title: "Agent智能體開發", desc: "從LLM API基礎出發，系統掌握Prompt Engineering，深入Tool Use與Function Calling，構建RAG知識庫檢索能力，逐步建立工程化思維與框架意識，最終具備將項目真正落地的實戰能力。" }
     },
     welcome: {
-      title: "歡迎來到Bob Zhang的世界",
+      title: "歡迎來到xiaoxiaoyu的世界",
       enter: "確定進入"
     },
     bento: {
-      gallery: "我的圖庫",
+      gallery: "我的記憶樹",
       hobbies: "我的熱愛and\n留下你的足跡"
     }
   },
@@ -156,14 +152,16 @@ export const mainTranslations = {
       subtitle: "Education",
       explore_archive: "Explore Archives",
       ujs_year: "2024 - Present",
-      ujs_title: "Jiangsu University CS (B.S.)",
-      ujs_desc: "Core evolution: Deeply studying AI Agent architectures & distributed application technology.",
-      ujs_full: "As the core evolution ground, this is not just an academic hall but an AI Agent battlefield. Here, I focus on distributed systems, cognitive modeling, and leveraging LLMs to build next-generation smart tools. By exploring distributed application technology, I aim to bridge value chains between decentralized apps and AI agents."
+      ujs_title: "Guilin University of Electronic Technology - Math Dept (B.S.)",
+      ujs_desc: "Core evolution: Moving toward full-stack learning, diving into Agent development and RPA automation.",
+      ujs_full: "After entering GUET's Math & Applied Math program in 2024, I spent a year feeling lost in math courses — my brain was full of 'I don't understand a word of Calculus!' But in my sophomore year, after joining the university's innovation lab, I started my frontend journey: from HTML/CSS/JS to Vue 3, then to WeChat mini-programs with uni-app, exploring many tech stacks along the way and marveling at how fast they evolve. With the rapid rise of AI — Agents, VibeCoding — I began shifting toward full-stack development, focusing on Agent applications and RPA automation workflows."
     },
+    evidence_verified: "EVIDENCE VERIFIED",
+    click_explore: "Explore Archives",
     contact: {
       title: "Click to Contact Me",
       hotline: "Direct Hotline",
-      encrypted: "Encrypted",
+      encrypted: "Encrypted Channel",
       label_name: "CODENAME [NAME]",
       placeholder_name: "Enter your identity code",
       label_email: "FREQUENCY [EMAIL]",
@@ -173,34 +171,28 @@ export const mainTranslations = {
       btn_send: ">_ TRANSMIT DATA",
       realname_v2: "Real-name",
       anonymous_v2: "Anonymous",
-      success: "Data transmitted. Notification sent to Bob.",
-      error: "Link failed. Please check network/retry.",
-      sending: "ESTABLISHING UPLINK..."
+      success: "Data transmitted. Xiaoxiaoyu has been notified.",
+      error: "Link failed. Please check your network and try again.",
+      sending: "ESTABLISHING CONNECTION..."
     },
-    projects: {
-      nj_title: "Nanjing Impressions",
-      nj_desc: "Next-gen Cultural App",
-      gz_title: "Cyber Guangzhou",
-      gz_desc: "Smart City Data Dashboard"
-    },
-    welcome_back: "Welcome back, Bob Zhang",
+    welcome_back: "Welcome back, Xiao xiao yu",
     guest_synced: "Guest Identity Synced",
-    system_arch: "System Architect Build 2026",
+    system_arch: "Full-Stack Dev Build 2026",
     create_future: "Inventing The Future Reality",
-    geek_profile_title: "GEEK_PROFILE",
+    geek_profile_title: "GEEK_PROFILE // GEEK_PROFILE",
     traits: {
-      t1: "Long-Termist", h1: "8 Years Digital Archives",
+      t1: "Idealist", h1: "Tech Idealism",
       t2: "Automation First", h2: "RPA & Efficiency Eng.",
       t3: "Visual Logic Nerd", h3: "Manim FX & UI",
-      t4: "Code Honest", h4: "Technical Sincerity"
+      t4: "AI Believer", h4: "Agent & VibeCoding"
     },
     building_future: "BUILDING THE FUTURE",
-    hello_im: "Hello, I am",
-    bento_intro_bold: "Computer Science @ JSU | AI Agent Dev | {{count}}+ Essays.",
-    bento_intro_desc: "Specializing in AI Agent construction & deep applications, rooted in RPA automation and Python scripting. 8 years of digital archives; every pixel is a footnote of logic and growth.",
-    stats_count: "{{count}}+ Docs",
+    hello_im: "Hello, I'm",
+    bento_intro_bold: "GUET | Full-Stack Learning | 30+ Essays.",
+    bento_intro_desc: "A lifelong learner on the full-stack journey — starting from frontend, diving deep into the full stack, tackling traditional frontend and backend tech stacks while indulging in the new AI possibilities of Agent and VibeCoding. Every now and then I look up at the stars — dreaming of becoming a carefree coder, honing real skills in the tech world, and ultimately enjoying a well-deserved laid-back life.",
+    stats_count: "30+ Essays",
     stats_deep: "Deep Tech Essays",
-    stats_8: "8 Years",
+    stats_8: "two years",
     stats_geek_records: "Geek Growth Records",
     core_tech: "Core Tech",
     tech_stack: "Tech Stack",
@@ -208,23 +200,23 @@ export const mainTranslations = {
       t1: "Core Drive", t2: "Visual Logic", t3: "Efficiency Eng.", t4: "Advanced UX", t5: "Low-Level Sys."
     },
     core_archives: "Core Archives",
-    explore_school: "Explore in-depth school backgrounds and timelines",
+    explore_school: "Learn more about school background and timeline",
     click_details: "Click For Details",
     geek_matrix: "Geek Depth Matrix",
-    geek_matrix_desc: "{{count}}+ Original tech essays deconstructed by domain",
+    geek_matrix_desc: "From pixels to parameters, from APIs to intelligence",
     expertise: {
-      ai: { title: "AI Evolution & Knowledge Eng.", desc: "Deeply engaged in the LLM ecosystem, accumulating 30+ combat diaries on Claude, Kimi, and NotebookLM, successfully building a personalized AI knowledge pipeline." },
-      rpa: { title: "RPA Workflow Automation", desc: "Connecting ShadowBot, Octopus, and Feishu bases. 50+ RPA records covering advanced web scraping and cross-system sync on TikTok & Xiaohongshu." },
-      py: { title: "Python Geek Laboratory", desc: "Focused on advanced web crawler architecture, Manim math engine, and system scripting. Establishing an efficient development mindset from scratch via 20+ reviews." },
-      chr: { title: "Digital Chronicles", desc: "My true negative film as a geek. {{count}} posts charting the cognitive leap from Wanning Middle School to JSU CS dept, a living fossil of continuous thought iteration." }
+      ai: { title: "Frontend Tech Stack", desc: "Proficient in modern frontend technologies: React, Vue, TypeScript, Tailwind CSS, Element Plus / Ant Design, and engineering tools like Vite, ESLint, Prettier for optimized code quality and dev experience." },
+      rpa: { title: "AI-Assisted Programming", desc: "Focused on the cutting-edge VibeCoding paradigm, researching practical applications of AI tools like Claude Code, Codex, Cursor, and Trae to boost development efficiency and explore AI-driven development paradigms." },
+      py: { title: "Python Backend Dev", desc: "Starting from Python, systematically integrating MySQL and Redis as data layers, building RESTful APIs via FastAPI, forming a complete zero-to-one backend development capability." },
+      chr: { title: "Agent Development", desc: "From LLM API basics to systematic Prompt Engineering, Tool Use, Function Calling, and RAG knowledge retrieval — building engineering mindset and framework awareness to deliver real-world projects." }
     },
     welcome: {
-      title: "Welcome to Bob Zhang's World",
+      title: "Welcome to xiaoxiaoyu's World",
       enter: "Enter Matrix"
     },
     bento: {
-      gallery: "MY GALLERY",
-      hobbies: "MY PASSION &\nFOOTPRINTS"
+      gallery: "My Memory Tree",
+      hobbies: "My Passion &\nLeave Your Footprints"
     }
   },
   pt: {
@@ -233,75 +225,71 @@ export const mainTranslations = {
       subtitle: "Education",
       explore_archive: "Explorar Arquivo",
       ujs_year: "2024 - Presente",
-      ujs_title: "Universidade de Jiangsu CS",
-      ujs_desc: "Evolução central: Pesquisas profundas em Agentes de IA e tecnologia de aplicações distribuídas.",
-      ujs_full: "Como o núcleo de evolução, aqui não é apenas um salão acadêmico, mas um laboratório real para Agentes. Meu foco é sistemas distribuídos, modelagem cognitiva e ferramentas baseadas em LLMs."
+      ujs_title: "Universidade Eletrônica de Guilin - Depto de Matemática (Bacharelado)",
+      ujs_desc: "Evolução central: Caminhando para o aprendizado full-stack, mergulhando no desenvolvimento de Agent e automação RPA.",
+      ujs_full: "Depois de entrar no curso de Matemática e Matemática Aplicada da GUET em 2024, passei um ano perdido nas disciplinas de matemática — minha cabeça só pensava 'não entendo nada de Cálculo!' Mas no segundo ano, ao ingressar no laboratório de inovação da universidade, comecei minha jornada no frontend: do HTML/CSS/JS ao Vue 3, depois a mini-programas WeChat com uni-app, explorando várias tecnologias e me impressionando com a velocidade das mudanças. Com a rápida evolução da IA — Agents, VibeCoding — comecei a migrar para o full-stack, focando em aplicações de Agent e fluxos de automação RPA."
     },
+    evidence_verified: "EVIDENCE VERIFIED",
+    click_explore: "Explorar Arquivo",
     contact: {
       title: "Clique para Me Contatar",
       hotline: "Linha Direta",
-      encrypted: "Via Encriptada",
-      label_name: "CODENOME [NOME]",
-      placeholder_name: "Insira seu código",
+      encrypted: "Canal Criptografado",
+      label_name: "CODINOME [NOME]",
+      placeholder_name: "Insira seu código de identidade",
       label_email: "FREQUÊNCIA [EMAIL]",
       placeholder_email: "canal-seguro@...",
-      label_msg: "DADOS NÚCLEO [MENSAGEM]",
-      placeholder_msg: "Preparando transmissão...",
-      btn_send: ">_ TRANSMITIR",
+      label_msg: "DADOS CENTRAIS [MENSAGEM]",
+      placeholder_msg: "Preparando transmissão de dados...",
+      btn_send: ">_ TRANSMITIR DADOS",
       realname_v2: "Identidade Real",
       anonymous_v2: "Anônimo",
-      success: "Dados transmitidos. Bob foi notificado.",
-      error: "Falha no canal. Tente novamente.",
-      sending: "CONECTANDO..."
+      success: "Dados transmitidos. Xiaoxiaoyu foi notificado.",
+      error: "Falha na conexão. Verifique sua rede e tente novamente.",
+      sending: "ESTABELECENDO CONEXÃO..."
     },
-    projects: {
-      nj_title: "Impressões de Nanquim",
-      nj_desc: "Nova Era Cultural",
-      gz_title: "Guangzhou Cyber",
-      gz_desc: "Dashboard Metropolitano"
-    },
-    welcome_back: "Bem-vindo de volta, Bob Zhang",
+    welcome_back: "Bem-vindo de volta, Xiao xiao yu",
     guest_synced: "Identidade de Convidado Sincronizada",
-    system_arch: "Arquiteto de Sistemas Versão 2026",
-    create_future: "Inventando A Realidade do Futuro",
-    geek_profile_title: "PERFIL_GEEK",
+    system_arch: "Full-Stack Dev Versão 2026",
+    create_future: "Inventando a Realidade do Futuro",
+    geek_profile_title: "PERFIL_GEEK // GEEK_PROFILE",
     traits: {
-      t1: "Longoprazista", h1: "8 Anos de Arquivos",
-      t2: "Automação Primeiro", h2: "Engenharia de RPA",
-      t3: "Nerd Visual", h3: "Manim FX e UI",
-      t4: "Código Honesto", h4: "Sinceridade Técnica"
+      t1: "Idealista", h1: "Idealismo Tecnológico",
+      t2: "Automação Primeiro", h2: "RPA & Eng. de Eficiência",
+      t3: "Nerd Visual", h3: "Manim FX & UI",
+      t4: "Fiel da IA", h4: "Agent & VibeCoding"
     },
     building_future: "CONSTRUINDO O FUTURO",
     hello_im: "Olá, Eu sou",
-    bento_intro_bold: "Ciência da Computação @ JSU | Dev AI Agent | {{count}}+ Ensaios.",
-    bento_intro_desc: "Especializado na construção e aplicações profundas de Agentes AI, enraizado em automação RPA e scripts Python. 8 anos de arquivos digitais; cada pixel é uma nota rodapé de lógica e evolução.",
-    stats_count: "{{count}}+ Docs",
-    stats_deep: "Ensaios Tech Profundos",
-    stats_8: "8 Anos",
-    stats_geek_records: "Registros de Crescimento",
+    bento_intro_bold: "GUET | Aprendizado Full-Stack | 30+ Ensaios.",
+    bento_intro_desc: "Um aprendiz vitalício na jornada full-stack, começando pelo frontend e mergulhando fundo no full-stack — explorando stacks tradicionais de frontend e backend enquanto me entrego às novas possibilidades de IA com Agent e VibeCoding. De vez em quando, olho para as estrelas — sonhando em me tornar um programador despreocupado, aprimorando minhas habilidades no mundo tech e, no fim, aproveitar uma vida tranquila e merecida.",
+    stats_count: "30+ Ensaios",
+    stats_deep: "Ensaios Técnicos Profundos",
+    stats_8: "two years",
+    stats_geek_records: "Registros de Crescimento Geek",
     core_tech: "Tecnologia Central",
     tech_stack: "Tech Stack",
     tags: {
       t1: "Motor Central", t2: "Lógica Visual", t3: "Eng. de Eficiência", t4: "UX Avançado", t5: "Sistemas de Baixo Nível"
     },
     core_archives: "Arquivos Centrais",
-    explore_school: "Explore os históricos escolares e cronológicas detalhadas",
+    explore_school: "Saiba mais sobre o histórico e cronograma da faculdade",
     click_details: "Clique Para Detalhes",
     geek_matrix: "Matriz de Profundidade Geek",
-    geek_matrix_desc: "{{count}}+ Ensaios tech originais desconstruídos por domínio",
+    geek_matrix_desc: "De pixels a parâmetros, de APIs à inteligência",
     expertise: {
-      ai: { title: "Evolução AI & Eng. de Conhecimento", desc: "Profundamente envolvido no ecossistema LLM, com 30+ diários de combate sobre Claude, Kimi e NotebookLM, construindo com sucesso um pipeline de conhecimento de IA." },
-      rpa: { title: "Automação de Fluxo de RPA", desc: "Dominando ShadowBot, Octopus e Feishu. 50+ registros RPA cobrindo raspagem de dados avançada e sincronização de sistemas no TikTok e Xiaohongshu." },
-      py: { title: "Laboratório Geek de Python", desc: "Focado em arquitetura de bots complexos, motores matemáticos Manim e scripts. 20+ artigos que moldam um método eficiente de desenvolvimento desde zero." },
-      chr: { title: "Crônicas Digitais", desc: "Meu verdadeiro filme negativo como geek. {{count}} diários que acompanham o salto cognitivo do liceu de Wanning para a universidade JSU, num estado de iteração contínua." }
+      ai: { title: "Frontend Tech Stack", desc: "Proficiente em tecnologias frontend modernas: React, Vue, TypeScript, Tailwind CSS, Element Plus / Ant Design e ferramentas de engenharia como Vite, ESLint, Prettier para qualidade de código e experiência de desenvolvimento otimizadas." },
+      rpa: { title: "Programação Assistida por IA", desc: "Focado no paradigma VibeCoding, pesquisando aplicações práticas de ferramentas de IA como Claude Code, Codex, Cursor e Trae para aumentar a eficiência do desenvolvimento e explorar novos paradigmas impulsionados por IA." },
+      py: { title: "Backend Python", desc: "Começando com Python, integrando MySQL e Redis como camadas de dados, construindo APIs RESTful via FastAPI, formando uma capacidade completa de desenvolvimento backend do zero." },
+      chr: { title: "Desenvolvimento de Agent", desc: "Dos fundamentos da API LLM ao Prompt Engineering sistemático, Tool Use, Function Calling e recuperação RAG — construindo mentalidade de engenharia e consciência de framework para entregar projetos reais." }
     },
     welcome: {
-      title: "Bem-vindo ao mundo de Bob Zhang",
+      title: "Bem-vindo ao mundo de xiaoxiaoyu",
       enter: "Confirmar Entrada"
     },
     bento: {
-      gallery: "MINHA GALERIA",
-      hobbies: "MINHA PAIXÃO &\nRASTROS"
+      gallery: "Minha Árvore de Memórias",
+      hobbies: "Minha Paixão &\nDeixe Suas Marcas"
     }
   },
   es: {
@@ -310,51 +298,47 @@ export const mainTranslations = {
       subtitle: "Education",
       explore_archive: "Explorar Archivos",
       ujs_year: "2024 - Presente",
-      ujs_title: "Universidad de Jiangsu CS",
-      ujs_desc: "Evolución central: Estudio intensivo de Agentes AI & tecnología de aplicaciones distribuidas.",
-      ujs_full: "El terreno de evolución nuclear, no solo como un aula sino un laboratorio práctico para Agentes Inteligentes. Me dedico a sistemas cognitivos, modelos de IA generativos..."
+      ujs_title: "Universidad Electrónica de Guilin - Depto. de Matemáticas (Lic.)",
+      ujs_desc: "Evolución central: Avanzando hacia el aprendizaje full-stack, sumergiéndome en el desarrollo de Agent y la automatización RPA.",
+      ujs_full: "Tras ingresar a la carrera de Matemáticas y Matemática Aplicada de la GUET en 2024, pasé un año perdido en las materias de matemáticas — mi cabeza solo pensaba '¡no entiendo ni una palabra de Cálculo!' Pero en mi segundo año, al unirme al laboratorio de innovación de la universidad, comencé mi viaje en el frontend: de HTML/CSS/JS a Vue 3, luego a miniprogramas WeChat con uni-app, explorando muchos stacks tecnológicos y maravillándome de lo rápido que evolucionan. Con el rápido auge de la IA — Agents, VibeCoding — comencé a migrar hacia el desarrollo full-stack, enfocándome en aplicaciones de Agent y flujos de automatización RPA."
     },
+    evidence_verified: "EVIDENCE VERIFIED",
+    click_explore: "Explorar Archivos",
     contact: {
       title: "Clic para Contactarme",
       hotline: "Línea Directa",
       encrypted: "Canal Cifrado",
-      label_name: "NOMBRE EN CLAVE",
-      placeholder_name: "Ingresa tu codename",
+      label_name: "NOMBRE EN CLAVE [NOMBRE]",
+      placeholder_name: "Ingrese su código de identidad",
       label_email: "FRECUENCIA [EMAIL]",
       placeholder_email: "canal-seguro@...",
-      label_msg: "DATOS NÚCLEO [MENSAJE]",
-      placeholder_msg: "Preparando streaming de datos...",
+      label_msg: "DATOS CENTRALES [MENSAJE]",
+      placeholder_msg: "Preparando transmisión de datos...",
       btn_send: ">_ TRANSMITIR DATOS",
       realname_v2: "Identidad Real",
       anonymous_v2: "Anónimo",
-      success: "Datos transmitidos. Bob ha sido notificado.",
-      error: "Fallo en el enlace. Inténtalo de nuevo.",
-      sending: "CONECTANDO..."
+      success: "Datos transmitidos. Xiaoxiaoyu ha sido notificado.",
+      error: "Fallo en el enlace. Verifique su red e intente de nuevo.",
+      sending: "ESTABLECIENDO CONEXIÓN..."
     },
-    projects: {
-      nj_title: "Impresiones de Nanjing",
-      nj_desc: "Cultura Nueva Generación",
-      gz_title: "Cyber Guangzhou",
-      gz_desc: "Matriz de Datos Urbanos"
-    },
-    welcome_back: "Bienvenido de nuevo, Bob Zhang",
+    welcome_back: "Bienvenido de nuevo, Xiao xiao yu",
     guest_synced: "Identidad de Invitado Sincronizada",
-    system_arch: "Arquitecto de Sistemas Build 2026",
-    create_future: "Inventando La Realidad del Futuro",
+    system_arch: "Full-Stack Dev Build 2026",
+    create_future: "Inventando la Realidad del Futuro",
     geek_profile_title: "PERFIL_GEEK // GEEK_PROFILE",
     traits: {
-      t1: "Largoplacista", h1: "8 Años de Archivos",
-      t2: "Automatización 1º", h2: "Ingeniería de RPA",
+      t1: "Idealista", h1: "Idealismo Tecnológico",
+      t2: "Automatización Primero", h2: "RPA & Ing. de Eficiencia",
       t3: "Nerd Visual", h3: "Manim FX & UI",
-      t4: "Código Honesto", h4: "Sinceridad Técnica"
+      t4: "Fiel de la IA", h4: "Agent & VibeCoding"
     },
     building_future: "CONSTRUYENDO EL FUTURO",
     hello_im: "Hola, Soy",
-    bento_intro_bold: "Ciencias de Computación @ JSU | Desarrollador de AI Agent | {{count}}+ Ensayos.",
-    bento_intro_desc: "Especializado en la construcción de Agentes AI y aplicaciones profundas, con raíces en la automatización RPA y scripts de Python. 8 años de archivos digitales; cada píxel es una nota de lógica y crecimiento.",
-    stats_count: "{{count}}+ Docs",
-    stats_deep: "Ensayos de Tec. Profunda",
-    stats_8: "8 Años",
+    bento_intro_bold: "GUET | Aprendizaje Full-Stack | 30+ Ensayos.",
+    bento_intro_desc: "Un aprendiz de por vida en el viaje full-stack, comenzando desde el frontend y profundizando en el full-stack — abordando stacks tradicionales de frontend y backend mientras me sumerjo en las nuevas posibilidades de IA con Agent y VibeCoding. De vez en cuando miro hacia las estrellas — soñando con convertirme en un programador despreocupado, perfeccionando habilidades en el mundo tech y, finalmente, disfrutar de una vida tranquila y bien merecida.",
+    stats_count: "30+ Ensayos",
+    stats_deep: "Ensayos Técnicos Profundos",
+    stats_8: "two years",
     stats_geek_records: "Registros Geek de Crecimiento",
     core_tech: "Tecnología Central",
     tech_stack: "Tech Stack",
@@ -362,23 +346,23 @@ export const mainTranslations = {
       t1: "Motor Base", t2: "Lógica Visual", t3: "Ing. de Eficiencia", t4: "UX Avanzado", t5: "Sistemas de Bajo Nivel"
     },
     core_archives: "Archivos Centrales",
-    explore_school: "Explora los fondos escolares y líneas de tiempo detalladas",
-    click_details: "Click Para Ver Más",
+    explore_school: "Conozca más sobre los antecedentes y cronograma de la universidad",
+    click_details: "Click Para Ver Detalles",
     geek_matrix: "Matriz de Profundidad Geek",
-    geek_matrix_desc: "{{count}}+ Ensayos tec orig. deconstruidos por dominio",
+    geek_matrix_desc: "De píxeles a parámetros, de APIs a inteligencia",
     expertise: {
-      ai: { title: "Evolución IA e Ing. de Conocimiento", desc: "Profundamente involucrado en el ecosistema LLM, acumulando 30+ diarios de combate sobre Claude, Kimi y NotebookLM, logrando construir un canal de conocimiento personalizado de IA." },
-      rpa: { title: "Automatización de Flujo RPA", desc: "Conectando las bases de ShadowBot, Octopus y Feishu. 50+ registros RPA cubriendo raspado web avanzado y sincronía multiplataforma en Xiaohongshu." },
-      py: { title: "Laboratorio Geek de Python", desc: "Centrado en arquitectura de bots avanzadas, motor matemático Manim y scripts del sistema de bajo y alto nivel a través de 20+ revisiones exhaustivas." },
-      chr: { title: "Crónicas Digitales", desc: "Mi crudo metraje como informático. {{count}} entradas mapeando mi salto cognitivo desde la Secundaria Wanning a IT JSU; el fósil viviente de mi continua iteración intelectual." }
+      ai: { title: "Frontend Tech Stack", desc: "Competente en tecnologías frontend modernas: React, Vue, TypeScript, Tailwind CSS, Element Plus / Ant Design, y herramientas de ingeniería como Vite, ESLint, Prettier para optimizar calidad de código y experiencia de desarrollo." },
+      rpa: { title: "Programación Asistida por IA", desc: "Enfocado en el paradigma VibeCoding, investigando aplicaciones prácticas de herramientas de IA como Claude Code, Codex, Cursor y Trae para aumentar la eficiencia del desarrollo y explorar nuevos paradigmas impulsados por IA." },
+      py: { title: "Backend Python", desc: "Comenzando con Python, integrando MySQL y Redis como capas de datos, construyendo APIs RESTful con FastAPI, formando una capacidad completa de desarrollo backend de cero a uno." },
+      chr: { title: "Desarrollo de Agent", desc: "Desde fundamentos de API LLM hasta Prompt Engineering sistemático, Tool Use, Function Calling y recuperación RAG — construyendo pensamiento de ingeniería y conciencia de frameworks para entregar proyectos reales." }
     },
     welcome: {
-      title: "Bienvenido al mundo de Bob Zhang",
+      title: "Bienvenido al mundo de xiaoxiaoyu",
       enter: "Confirmar Entrada"
     },
     bento: {
-      gallery: "MI GALERÍA",
-      hobbies: "MI PASIÓN &\nHUELLAS"
+      gallery: "Mi Árbol de Memoria",
+      hobbies: "Mi Pasión &\nDeja tus Huellas"
     }
   },
   de: {
@@ -387,154 +371,144 @@ export const mainTranslations = {
       subtitle: "Education",
       explore_archive: "Archiv durchsuchen",
       ujs_year: "2024 - Heute",
-      ujs_title: "Jiangsu Universität CS",
-      ujs_desc: "Zentrale Entwicklung: Tiefgründiges AI Agent Design & verteilte Anwendungstechnologie.",
-      ujs_full: "Der Kern meiner Evolution als Labor für praktische Informatik. Fokus liegt auf dezentralen Systemen, kognitiven Frameworks und Next-gen Software Tools..."
+      ujs_title: "Universität für Elektronik Guilin - Mathematik (B.Sc.)",
+      ujs_desc: "Kernentwicklung: Hin zum Full-Stack-Learning, Eintauchen in Agent-Entwicklung und RPA-Automatisierung.",
+      ujs_full: "Nachdem ich 2024 das Mathematikstudium an der GUET begonnen hatte, war ich ein Jahr lang in den Mathe-Vorlesungen völlig verloren — mein Kopf dachte nur 'Ich verstehe kein Wort von Analysis!' Aber in meinem zweiten Jahr, nachdem ich dem Innovationslabor der Uni beigetreten war, begann meine Frontend-Reise: von HTML/CSS/JS zu Vue 3, dann zu WeChat-Miniprogrammen mit uni-app, wobei ich viele Tech-Stacks kennenlernte und staunte, wie schnell sie sich weiterentwickeln. Mit dem rasanten Aufstieg der KI — Agents, VibeCoding — begann ich, mich Richtung Full-Stack zu orientieren, mit Fokus auf Agent-Anwendungen und RPA-Automatisierungs-Workflows."
     },
+    evidence_verified: "EVIDENCE VERIFIED",
+    click_explore: "Archiv durchsuchen",
     contact: {
       title: "Kontaktiere mich",
       hotline: "Direktleitung",
-      encrypted: "Verschlüsselt",
+      encrypted: "Verschlüsselter Kanal",
       label_name: "CODENAME [NAME]",
-      placeholder_name: "Code eingeben",
+      placeholder_name: "Geben Sie Ihren Identitätscode ein",
       label_email: "FREQUENZ [EMAIL]",
       placeholder_email: "sicherer-kanal@...",
       label_msg: "KERNDATEN [NACHRICHT]",
-      placeholder_msg: "Kompiliere Datensatz...",
+      placeholder_msg: "Bereite Datenübertragung vor...",
       btn_send: ">_ DATEN SENDEN",
       realname_v2: "Echtname",
       anonymous_v2: "Anonym",
-      success: "Daten übertragen. Bob wurde benachrichtigt.",
-      error: "Verbindung unterbrochen. Bitte erneut versuchen.",
-      sending: "VERBINDEN..."
+      success: "Daten übertragen. Xiaoxiaoyu wurde benachrichtigt.",
+      error: "Verbindungsfehler. Bitte überprüfen Sie Ihr Netzwerk und versuchen Sie es erneut.",
+      sending: "VERBINDUNG HERSTELLEN..."
     },
-    projects: {
-      nj_title: "Nanjing Impressionen",
-      nj_desc: "Next-gen Kultur-App",
-      gz_title: "Cyber Guangzhou",
-      gz_desc: "Smart City Dashboard"
-    },
-    welcome_back: "Willkommen zurück, Bob",
+    welcome_back: "Willkommen zurück, Xiao xiao yu",
     guest_synced: "Gastidentität synchronisiert",
-    system_arch: "Systemarchitekt Version 2026",
-    create_future: "Zukunftsrealität erfinden",
-    geek_profile_title: "GEEK_PROFIL",
+    system_arch: "Full-Stack Dev Build 2026",
+    create_future: "Zukunftsrealität erschaffen",
+    geek_profile_title: "GEEK_PROFIL // GEEK_PROFILE",
     traits: {
-      t1: "Langfristig", h1: "8 Jahre digitale Archive",
-      t2: "Auto First", h2: "RPA-Ingenieurwesen",
+      t1: "Idealist", h1: "Technik-Idealismus",
+      t2: "Automatisierung First", h2: "RPA & Effizienz-Technik",
       t3: "Visueller Nerd", h3: "Manim FX & UI",
-      t4: "Code Ehrlich", h4: "Technische Ehrlichkeit"
+      t4: "KI-Verfechter", h4: "Agent & VibeCoding"
     },
-    building_future: "ZUKUNFT BAUEN",
+    building_future: "BAUE DIE ZUKUNFT",
     hello_im: "Hallo, ich bin",
-    bento_intro_bold: "Informatikstudium @ JSU | KI-Agent Dev | {{count}}+ Deep Docs.",
-    bento_intro_desc: "Spezialisiert auf KI-Agenten-Architektur, mit Grundlage in RPA-Automatisierung und Python. 8 Jahre digitaler Fußabdruck; jeder Pixel ist eine Fußnote meiner Programmiergeschichte.",
-    stats_count: "{{count}}+ Akten",
-    stats_deep: "Technologische Essays",
-    stats_8: "8 Jahre",
-    stats_geek_records: "Geek-Entwicklungsarchiv",
+    bento_intro_bold: "GUET | Full-Stack-Learning | 30+ Essays.",
+    bento_intro_desc: "Ein lebenslanger Lerner auf der Full-Stack-Reise, beginnend mit dem Frontend und eintauchend in die Tiefen des Full-Stacks — traditionelle Frontend- und Backend-Stacks erkundend, während ich mich in die neuen KI-Möglichkeiten von Agent und VibeCoding vertiefe. Hin und wieder blicke ich zu den Sternen auf — träume davon, ein unbeschwerter Coder zu sein, echte Fähigkeiten in der Tech-Welt zu schärfen und letztendlich ein wohlverdientes entspanntes Leben zu genießen.",
+    stats_count: "30+ Essays",
+    stats_deep: "Tiefgehende Tech-Essays",
+    stats_8: "two years",
+    stats_geek_records: "Geek-Wachstumsarchiv",
     core_tech: "Kerntechnologie",
-    tech_stack: "Technologie-Stack",
+    tech_stack: "Tech-Stack",
     tags: {
       t1: "Kernantrieb", t2: "Visuelle Logik", t3: "Effizienz-Technik", t4: "Moderne UX", t5: "Low-Level-Sys."
     },
-    core_archives: "Schularchive",
-    explore_school: "Tiefgründige Schulhintergründe und Zeitlinien entdecken",
-    click_details: "Klicken für Details",
-    geek_matrix: "Geek Tiefe Matrix",
-    geek_matrix_desc: "{{count}}+ Essays, nach Domänen dekonstruiert",
+    core_archives: "Kernarchive",
+    explore_school: "Erfahren Sie mehr über den Hintergrund und die Zeitleiste der Universität",
+    click_details: "Klicken Sie für Details",
+    geek_matrix: "Geek-Tiefenmatrix",
+    geek_matrix_desc: "Von Pixeln zu Parametern, von APIs zu Intelligenz",
     expertise: {
-      ai: { title: "KI-Evolution & Wissens-Engineering", desc: "Tief verwurzelt im LLM-Ökosystem mit über 30 Einsatzprotokollen zu Claude, Kimi und NotebookLM, Aufbau einer vernetzten Pipeline mit LLM." },
-      rpa: { title: "RPA-Workflow-Automatisierung", desc: "Von ShadowBot bis Octopus. 50+ Aufzeichnungen zu fortgeschrittener Datenerfassung und systemübergreifender Integration in sozialen Netzwerken." },
-      py: { title: "Python Geek Laboratorium", desc: "Fokussiert auf komplexe Webcrawler-Architektur, Manim Engine und Python Automation. Aufbau eines effizienten Entwicklungsverständnisses durch jahrelange Praxis." },
-      chr: { title: "Digitale Chroniken", desc: "Das rohe Entwickler-Tagebuch. {{count}} Artikel, die meinen kognitiven Durchbruch vom Gymnasium Wanning zur Universität Jiangsu dokumentieren." }
+      ai: { title: "Frontend-Tech-Stack", desc: "Kompetent in modernen Frontend-Technologien: React, Vue, TypeScript, Tailwind CSS, Element Plus / Ant Design und Engineering-Tools wie Vite, ESLint, Prettier für optimierte Codequalität und Entwicklererfahrung." },
+      rpa: { title: "KI-gestützte Programmierung", desc: "Fokussiert auf das VibeCoding-Paradigma, Erforschung praktischer Anwendungen von KI-Tools wie Claude Code, Codex, Cursor und Trae zur Steigerung der Entwicklungseffizienz und Erkundung KI-gesteuerter Entwicklungsparadigmen." },
+      py: { title: "Python-Backend-Entwicklung", desc: "Von Python ausgehend, systematische Integration von MySQL und Redis als Datenschichten, Aufbau von RESTful-APIs mit FastAPI — eine komplette Backend-Entwicklungsfähigkeit von Null auf Eins." },
+      chr: { title: "Agent-Entwicklung", desc: "Von LLM-API-Grundlagen zu systematischem Prompt Engineering, Tool Use, Function Calling und RAG-Wissensabruf — Aufbau von Engineering-Denken und Framework-Bewusstsein für die Auslieferung realer Projekte." }
     },
     welcome: {
-      title: "Willkommen in der Welt von Bob Zhang",
+      title: "Willkommen in der Welt von xiaoxiaoyu",
       enter: "Eintritt Bestätigen"
     },
     bento: {
-      gallery: "MEINE GALERIE",
-      hobbies: "MEINE PASSION &\nFUSSSPUREN"
+      gallery: "Mein Erinnerungsbaum",
+      hobbies: "Meine Leidenschaft &\nHinterlasse deine Spuren"
     }
   },
   fr: {
     edu: {
       title: "Parcours Éducatif",
       subtitle: "Education",
-      explore_archive: "Parcourir L'Archive",
+      explore_archive: "Explorer les Archives",
       ujs_year: "2024 - Présent",
-      ujs_title: "Jiangsu University Informatique",
-      ujs_desc: "Évolution globale: Plongée au cœur de la logique des IA & technologie d'applications distribuées.",
-      ujs_full: "Le laboratoire central de mon évolution technique. Me concentrant sur l'Intelligence Artificielle en agent et comment relier l'IA avec le web décentralisé..."
+      ujs_title: "Université d'Électronique de Guilin - Dépt. de Mathématiques (Licence)",
+      ujs_desc: "Évolution centrale : Vers l'apprentissage full-stack, plongée dans le développement d'Agent et l'automatisation RPA.",
+      ujs_full: "Après être entré en Mathématiques et Mathématiques Appliquées à la GUET en 2024, j'ai passé une année perdue dans les cours de maths — ma tête ne pensait qu'à 'je ne comprends rien à l'Analyse !' Mais en deuxième année, après avoir rejoint le laboratoire d'innovation de l'université, j'ai commencé mon voyage frontend : du HTML/CSS/JS à Vue 3, puis aux mini-programmes WeChat avec uni-app, explorant de nombreux stacks technologiques et m'émerveillant de leur rapidité d'évolution. Avec l'essor fulgurant de l'IA — Agents, VibeCoding — j'ai commencé à migrer vers le full-stack, me concentrant sur les applications d'Agent et les workflows d'automatisation RPA."
     },
+    evidence_verified: "EVIDENCE VERIFIED",
+    click_explore: "Explorer les Archives",
     contact: {
       title: "Me Contacter",
       hotline: "Ligne Directe",
       encrypted: "Canal Chiffré",
       label_name: "CODE D'IDENTITÉ [NOM]",
-      placeholder_name: "Saisissez votre code",
-      label_email: "CANAL RADIO [EMAIL]",
-      placeholder_email: "connexion@...",
-      label_msg: "DONNÉES CIBLES [MESSAGE]",
-      placeholder_msg: "En cours de transfert...",
-      btn_send: ">_ ENVOYER DONNÉES",
+      placeholder_name: "Entrez votre code d'identité",
+      label_email: "FRÉQUENCE [EMAIL]",
+      placeholder_email: "canal-sécurisé@...",
+      label_msg: "DONNÉES CENTRALES [MESSAGE]",
+      placeholder_msg: "Préparation du transfert de données...",
+      btn_send: ">_ TRANSMETTRE LES DONNÉES",
       realname_v2: "Identité Réelle",
       anonymous_v2: "Anonyme",
-      success: "Données transmises. Bob a été notifié.",
-      error: "Lien interrompu. Veuillez réessayer.",
-      sending: "CONNEXION..."
+      success: "Données transmises. Xiaoxiaoyu a été notifié.",
+      error: "Échec de la connexion. Veuillez vérifier votre réseau et réessayer.",
+      sending: "ÉTABLISSEMENT DE LA CONNEXION..."
     },
-    projects: {
-      nj_title: "Impressions de Nanjing",
-      nj_desc: "Nouvelle Appli Culturelle",
-      gz_title: "Cyber Guangzhou",
-      gz_desc: "Dashboard Intelligente"
-    },
-    welcome_back: "Ravi de vous revoir, Bob",
+    welcome_back: "Ravi de vous revoir, Xiao xiao yu",
     guest_synced: "Identité de l'invité synchronisée",
-    system_arch: "Architecte Système v.2026",
+    system_arch: "Full-Stack Dev v.2026",
     create_future: "Inventer la Réalité du Futur",
-    geek_profile_title: "PROFIL_GEEK",
+    geek_profile_title: "PROFIL_GEEK // GEEK_PROFILE",
     traits: {
-      t1: "Visionnaire", h1: "8 ans d'archives num.",
-      t2: "Auto. First", h2: "Ingénierie RPA",
-      t3: "Nerd Virtuel", h3: "Manim FX & UX",
-      t4: "Code Honnête", h4: "Sincérité Technique"
+      t1: "Idéaliste", h1: "Idéalisme Technologique",
+      t2: "Automatisation d'Abord", h2: "RPA & Ing. d'Efficacité",
+      t3: "Nerd Visuel", h3: "Manim FX & UI",
+      t4: "Fidèle de l'IA", h4: "Agent & VibeCoding"
     },
-    building_future: "EN COURS DE CONSTRUCTION",
+    building_future: "CONSTRUIRE LE FUTUR",
     hello_im: "Bonjour, je suis",
-    bento_intro_bold: "Science Informatique @ JSU | Dev AI Agent | {{count}}+ Essais.",
-    bento_intro_desc: "Spécialisé dans la création d'Agents IA, ancré dans l'automatisation RPA et le code Python. 8 ans d'archives digitales; chaque pixel prouve une croissance absolue.",
-    stats_count: "{{count}}+ Docs",
-    stats_deep: "Articles de Technologie",
-    stats_8: "8 Années",
-    stats_geek_records: "Archives de Croissance Geek",
+    bento_intro_bold: "GUET | Apprentissage Full-Stack | 30+ Essais.",
+    bento_intro_desc: "Un apprenant à vie sur le chemin full-stack, commençant par le frontend et plongeant profondément dans le full-stack — explorant les stacks frontend et backend traditionnels tout en m'immergeant dans les nouvelles possibilités d'IA avec Agent et VibeCoding. De temps en temps, je lève les yeux vers les étoiles — rêvant de devenir un codeur insouciant, aiguisant de vraies compétences dans le monde tech, et finalement profiter d'une vie paisible et bien méritée.",
+    stats_count: "30+ Essais",
+    stats_deep: "Essais Techniques Approfondis",
+    stats_8: "two years",
+    stats_geek_records: "Registres de Croissance Geek",
     core_tech: "Tech Fondamentale",
     tech_stack: "Tech Stack",
     tags: {
-      t1: "Moteur Central", t2: "Logique Vis.", t3: "Ingéniosité", t4: "Haute UX", t5: "Niveau Système"
+      t1: "Moteur Central", t2: "Logique Visuelle", t3: "Ing. d'Efficacité", t4: "UX Avancée", t5: "Systèmes Bas Niveau"
     },
-    core_archives: "Archives de L'École",
-    explore_school: "Découvrez les historiques scolaires et les chronologies",
+    core_archives: "Archives Centrales",
+    explore_school: "En savoir plus sur le contexte et la chronologie de l'université",
     click_details: "Cliquez pour voir les détails",
-    geek_matrix: "Matrice de Profondeur",
-    geek_matrix_desc: "{{count}}+ Essais Tech Originaux déconstruits par domaine",
+    geek_matrix: "Matrice de Profondeur Geek",
+    geek_matrix_desc: "Des pixels aux paramètres, des API à l'intelligence",
     expertise: {
-      ai: { title: "Évolution de l'IA & Base Connaissance", desc: "Impliqué en profondeur dans l'écosystème IA (Claude, Kimi, NotebookLM). Compilation de 30+ journaux pour créer un hub cognitif IA intelligent." },
-      rpa: { title: "Automatisation et Ingénierie RPA", desc: "Mise en réseau de ShadowBot, Octopus et Feishu. 50+ solutions de grattage web avancé de Xiaohongshu jusqu'au développement sur mobile." },
-      py: { title: "Laboratoire Geek Python", desc: "Centré sur l'architecture avancée, Manim pour les maths et développement backend solide. Établir une méthodologie extrême via plus de 20 retours critiques." },
-      chr: { title: "Chroniques Numériques", desc: "Mon héritage numérique brut. {{count}} chapitres cartographiant le saut intellectuel de l'école Wanning au département des systèmes JSU." }
+      ai: { title: "Frontend Tech Stack", desc: "Compétent dans les technologies frontend modernes : React, Vue, TypeScript, Tailwind CSS, Element Plus / Ant Design, et les outils d'ingénierie comme Vite, ESLint, Prettier pour optimiser la qualité du code et l'expérience de développement." },
+      rpa: { title: "Programmation Assistée par IA", desc: "Axé sur le paradigme VibeCoding, recherche d'applications pratiques d'outils d'IA comme Claude Code, Codex, Cursor et Trae pour améliorer l'efficacité du développement et explorer de nouveaux paradigmes pilotés par l'IA." },
+      py: { title: "Développement Backend Python", desc: "Partant de Python, intégration systématique de MySQL et Redis comme couches de données, construction d'APIs RESTful avec FastAPI — une capacité de développement backend complète de zéro à un." },
+      chr: { title: "Développement d'Agent", desc: "Des bases de l'API LLM au Prompt Engineering systématique, Tool Use, Function Calling et récupération RAG — acquisition d'un état d'esprit d'ingénieur et d'une conscience des frameworks pour livrer des projets concrets." }
     },
-    evidence_verified: "PREUVE CONFIRMÉE",
-    click_explore: "Explorer L'Archive",
     welcome: {
-      title: "Bienvenue dans le monde de Bob Zhang",
-      enter: "Confirmer L'Entrée"
+      title: "Bienvenue dans le monde de xiaoxiaoyu",
+      enter: "Confirmer l'Entrée"
     },
     bento: {
-      gallery: "MA GALERIE",
-      hobbies: "MA PASSION &\nEMPREINTES"
+      gallery: "Mon Arbre de Mémoire",
+      hobbies: "Ma Passion &\nLaissez Vos Empreintes"
     }
   }
 };
