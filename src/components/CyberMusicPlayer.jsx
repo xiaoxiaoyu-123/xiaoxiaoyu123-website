@@ -336,7 +336,7 @@ export default function CyberMusicPlayer({ logoSrc, onBgmPause, onBgmResume }) {
                 : 'bg-white/10'
               }`}>
               {logoSrc ? (
-                <img src={logoSrc} alt="logo" className="w-5 h-5 rounded-full object-cover" />
+                <img src={logoSrc} alt="guet-logo" className="w-5 h-5 rounded-full object-cover" />
               ) : (
                 <Music size={14} className={`transition-colors ${isPlaying ? 'text-cyan-300' : 'text-white/50'}`} />
               )}

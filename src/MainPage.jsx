@@ -356,7 +356,7 @@ export default function MainPage({
             className="col-span-1 row-span-1 p-0 overflow-hidden group min-h-[180px] lg:min-h-0 cursor-pointer"
           >
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-all duration-500 z-10"></div>
-            <img src="/mc.jpg " alt="Memory Tree Entrance" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <img src="/mc01.jpg" alt="Memory Tree Entrance" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div className="absolute top-4 left-4 z-20">
                <div className="px-3 py-1 bg-cyan-500/20 backdrop-blur-md rounded-full text-[10px] font-bold border border-cyan-500/30 text-cyan-400">
                   CORE MEMORY // LINK

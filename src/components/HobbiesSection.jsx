@@ -176,7 +176,7 @@ const SLIDER_ITEMS = [
     title: '桂电车协\n校园休闲骑',
     subtitle: '休闲骑行',
     description: '每一次团骑，都是对校园的探索。桂林电子科技大学的校园骑行，带来的是轻松与愉悦的体验。无论是晨光中的操场，还是傍晚的林荫道，每一段路都充满了青春的气息。',
-    img: '/project2.jpg',
+    img: null,
     gallery:[
       '/2025092601.jpg',
       '/2025092602.jpg',
@@ -189,7 +189,7 @@ const SLIDER_ITEMS = [
     title: '桂电X师大X桂理\n三校共骑大圩古镇',
     subtitle: '',
     description: '三校共骑，跨校交流，骑行大圩古镇，感受历史与现代的交融。每一次骑行都是对友谊的加深，也是对自我挑战的超越。',
-    // img: '/fzhp.jpg',
+    img:null,
     gallery:[
       '/2025100101.jpg',
       '/2025100102.jpg',
@@ -203,7 +203,7 @@ const SLIDER_ITEMS = [
     title: '五校联骑\n海洋乡百公里!',
     subtitle: '',
     description: '五校联骑，共赴海洋乡，挑战百公里骑行。在自然的怀抱中，感受团队的力量与坚持的意义。',
-    // img: '/wzhp.jpg',
+    img:null,
     gallery:[
       '/2025112201.jpg',
       '/2025112202.jpg',
@@ -219,7 +219,7 @@ const SLIDER_ITEMS = [
     title: '这次和你一起\n看那落日与晚霞',
     subtitle: '单飞',
     description: '尧山，海拔约1.3km，单飞骑行，挑战自我。每一次独自骑行，都是对意志的磨炼，也是对自由的追求。',
-    img: '/0d5e4ae8f2352d09ca65cc0e6ba419a2.jpg',
+    img: null,
     gallery: [
       '/2026011401.jpg',
       '/2026011402.jpg',
@@ -233,7 +233,7 @@ const SLIDER_ITEMS = [
     title: '猫宁小院，\n撸猫小能手上线！',
     subtitle: '撸猫',
     description: '享受与猫咪的亲密时光，感受它们的温暖与陪伴。每一次撸猫，都是心灵的治愈，也是生活的小确幸。',
-    video: '/2026063001.mp4',
+    video: '/2026063004.mp4',
     accentColor: '#5856d6', 
   },
 ];
@@ -259,44 +259,15 @@ const DETAIL_ITEMS = [
     gallery: ['/小孩姐要考桂电_x264.mp4'],
     accentColor: '#af52de'
   },
-  { 
-    id: 'detail-values', 
-    category: '', 
-    title: '个人价值观', 
-    description: '信奉实用主义，渴望以技术为杠杆放大产能；深耕长期主义，凭极强自律积累寻求复利；拥抱前瞻科技，致力于解决真实痛点，创造社会价值！', 
-    img: '/6301366b8767838a135df8fc9650a728.jpg', 
-    imgPosition: 'top',
-    video: '/028aa2b1e3b869b1a9beb7f7d30b7da6.mp4', 
-    gallery: [
-      '/6301366b8767838a135df8fc9650a728.jpg',
-      '/a669805bcf4e271b74a9e7657c3cf154.jpg',
-      '/1831b7c3eb5185a0090699b39fec6f62.jpg'
-    ],
-    accentColor: '#34c759'
-  },
-  {
-    id: 'detail-personality',
-    category: '',
-    title: '偏输出型平衡人格',
-    description: '爱表达分享，有想法就想说，关键时也能沉心吸收、默默思考，能说能写、能动能静，越输出越清醒，越分享越有动力！',
-    img: '/fdcc1a1d1e6a97d72d48f28fb0992d87.jpg',
-    imgPosition: 'top',
-    video: null,
-    gallery: [
-      '/fdcc1a1d1e6a97d72d48f28fb0992d87.jpg',
-      '/519b4c4de78850b92ecc087c6c9cd140.jpg',
-      '/aaccd79db9940d4a667d39c1d5211fb8.jpg',
-      '/a38352c8e15631d04901157946a382b9.jpg'
-    ],
-    accentColor: '#af52de',
-  },
+
   { 
     id: 'detail-mvp', 
     category: '', 
-    title: '关于我的个人爱好', 
-    description: '喜欢骑行、撸猫、羽毛球、网球等运动，享受运动带来的快乐与健康，也喜欢探索新鲜事物，保持好奇心和学习的热情。', 
-    img: '/ed4d9515a907d5076ddc3b016d2306c7.jpg', 
-    video: null,
+    title: '校园骑行Vlog',
+    description: '校园骑行Vlog，记录每一次骑行的点滴，分享青春的活力与激情。无论是晨光中的校园，还是夜幕下的街道，每一帧都是青春的印记。',
+    img: null,
+    video:null,
+    gallery:['/校园骑_x264.mp4'],
     accentColor: '#ff9500'
   },
   { 
@@ -306,8 +277,7 @@ const DETAIL_ITEMS = [
     description: '点亮每一颗星星，纪念来过的足迹', 
     img: null, 
     gallery: [
-      '/5f2e641966aa7030f4d799dce7932126.jpg',
-      '/42580f20d62e39c3460b7411f1a19829.jpg'
+        null
     ],
     accentColor: '#5856d6'
   }

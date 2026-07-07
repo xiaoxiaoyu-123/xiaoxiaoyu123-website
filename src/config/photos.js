@@ -24,7 +24,7 @@ export const PHOTO_DATA = [
   { id: 17, url: '/2026050201.jpg', type: 'image', title: '广州塔', location: '广州海珠' },
   { id: 18, url: '/2026063004.jpg', type: 'image', title: '小奶猫', location: '桂林七星-施家园' },
   { id: 19, url: '/my-baby.jpg', type: 'image', title: '你从未离去', location: '桂电信科' },
-  { id: 20, url: '/mc.jpg', type: 'image', title: '往日种种', location: '广西钦州' },
+  { id: 20, url: '/mc01.jpg', type: 'image', title: '往日种种', location: '广西钦州' },
   { id: 21, url: '/2024091701.png', type: 'image', title: '芙莉莲', location: '桂林-甲天下会展中心' },
   { id: 22, url: '/2026050105.jpg', type: 'image', title: '广州萤火虫-达妮娅', location: '广州海珠' },
   { id: 23, url: '/nianyan.jpg', type: 'image', title: '年夜饭', location: '满汉全席' },
