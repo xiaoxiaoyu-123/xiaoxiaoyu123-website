@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Volume2, VolumeX, Globe } from 'lucide-react';
+import { Volume2, VolumeX, Globe, Play, Pause, Music, X as CloseIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import Loader from './components/Loader';
 import AnimatedCharacters from './components/AnimatedCharacters';
@@ -12,6 +12,48 @@ import ContactArchive from './components/ContactArchive';
 import MemoryArchive from './components/MemoryArchive';
 import HobbiesSection from './components/HobbiesSection';
 import CommentAdmin from './components/CommentAdmin';
+import LyricsPanel from './components/LyricsPanel';
+
+// BGM 歌词：結束バンド - ギターと孤独と蒼い惑星
+const bgmLyrics = [
+  { time: 15.14, text: "突然降る夕立 あぁ傘もないや嫌" },
+  { time: 21.03, text: "空のご機嫌なんか知らない" },
+  { time: 25.03, text: "季節の変わり目の服は 何着りゃいいんだろ" },
+  { time: 30.99, text: "春と秋 どこいっちゃったんだよ" },
+  { time: 34.97, text: "息も出来ない 情報の圧力" },
+  { time: 39.83, text: "めまいの螺旋だ わたしはどこにいる" },
+  { time: 44.66, text: "こんなに こんなに 息の音がするのに" },
+  { time: 50.79, text: "変だね 世界の音がしない" },
+  { time: 56.12, text: "足りない 足りない 誰にも気づかれない" },
+  { time: 60.36, text: "殴り書きみたいな音 出せない状態で叫んだよ" },
+  { time: 64.72, text: "「ありのまま」なんて 誰に見せるんだ" },
+  { time: 68.26, text: "馬鹿なわたしは歌うだけ" },
+  { time: 72.04, text: "ぶちまけちゃおうか 星に" },
+  { time: 76.48, text: "エリクサーに張り替える作業もなんとなくなんだ" },
+  { time: 80.92, text: "欠けた爪を少し触る" },
+  { time: 85.02, text: "半径300mmの体で 必死に嗚いてる" },
+  { time: 89.45, text: "音楽にとっちゃ ココが地球だな" },
+  { time: 93.21, text: "空気を握って 空を殴るよ" },
+  { time: 97.72, text: "なんにも起きない わたしは無力さ" },
+  { time: 102.18, text: "だけどさ その手で この鉄を弾いたら" },
+  { time: 106.75, text: "何かが変わって見えた…ような。" },
+  { time: 110.67, text: "眩しい 眩しい そんなに光るなよ" },
+  { time: 115.13, text: "わたしのダサい影が より色濃くなってしまうだろ" },
+  { time: 119.58, text: "なんでこんな熱くなっちゃってんだ 止まんない" },
+  { time: 123.11, text: "馬鹿なわたしは歌うだけ" },
+  { time: 126.89, text: "うるさいんだって 心臓" },
+  { time: 130.74, text: "蒼い惑星 ひとりぼっち" },
+  { time: 134.32, text: "いっぱいの音を聞いてきた" },
+  { time: 137.90, text: "回り続けて 幾億年" },
+  { time: 141.48, text: "一瞬でもいいから…ああ" },
+  { time: 144.06, text: "聞いて" },
+  { time: 145.38, text: "聴けよ" },
+  { time: 147.76, text: "わたし わたし わたしはここにいる" },
+  { time: 151.23, text: "殴り書きみたいな音 出せない状態で叫んだよ" },
+  { time: 155.69, text: "なんかになりたい なりたい 何者かでいい" },
+  { time: 159.33, text: "馬鹿なわたしは歌うだけ" },
+  { time: 163.11, text: "ぶちまけちゃおうか 星に" },
+];
 
 const VISITOR_STORAGE_KEY = 'bob_visitor_data';
 
@@ -60,6 +102,9 @@ function App() {
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [selectedExpertise, setSelectedExpertise] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [bgmCurrentTime, setBgmCurrentTime] = useState(0);
+  const [bgmDuration, setBgmDuration] = useState(0);
+  const [showBgmPlayer, setShowBgmPlayer] = useState(false);
 
   // Visitor data (persisted)
   const [visitorData, setVisitorData] = useState(() => {
@@ -97,11 +142,13 @@ function App() {
 
   // Initialize audio on component mount
   useEffect(() => {
-    audioRef.current = new Audio('/bgm.mp3');
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.4; // 统一设定初始音量为 40%
-    
-    // Cleanup on unmount
+    const audio = new Audio('/結束バンド - ギターと孤独と蒼い惑星.mp3');
+    audio.loop = true;
+    audio.volume = 0.4;
+    audio.ontimeupdate = () => setBgmCurrentTime(audio.currentTime);
+    audio.onloadedmetadata = () => setBgmDuration(audio.duration);
+    audioRef.current = audio;
+
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
@@ -119,6 +166,10 @@ function App() {
     setStage('loading');
   };
 
+  const handleLoadingFinish = useCallback(() => {
+    setStage('login');
+  }, []);
+
   const toggleMusic = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -130,11 +181,17 @@ function App() {
     }
   };
 
+  const formatTime = (t) => {
+    const m = Math.floor(t / 60);
+    const s = Math.floor(t % 60);
+    return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  };
+
   return (
     <>
       <div 
         className="relative min-h-screen w-full flex items-center justify-center font-sans overflow-hidden bg-cover bg-center bg-no-repeat transition-colors duration-1000"
-        style={{ backgroundImage: `url('${stage === 'main' ? '/main-bg.png' : '/bg.jpg'}')` }}
+        style={{ backgroundImage: `url('${stage === 'main' ? '/main-bg.png' : '/bg02.jpg'}')` }}
       >
         {/* 全局设置 - 遮光罩减弱至10% */}
         <div className="absolute inset-0 bg-black/10 backdrop-blur-sm z-0 pointer-events-none"></div>
@@ -143,13 +200,82 @@ function App() {
         {stage !== 'welcome' && (
           <div className="absolute top-6 right-6 z-50 flex flex-col items-center gap-4">
             
-            {/* 1. 音乐控制开关 (在上方) */}
-            <button 
-              onClick={toggleMusic}
-              className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
-            >
-              {isPlaying ? <Volume2 size={24} /> : <VolumeX size={24} />}
-            </button>
+            {/* 1. BGM 播放器 */}
+            <div className="relative">
+              <button
+                onClick={() => setShowBgmPlayer(!showBgmPlayer)}
+                className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
+              >
+                {isPlaying ? <Volume2 size={24} /> : <VolumeX size={24} />}
+              </button>
+
+              <AnimatePresence>
+                {showBgmPlayer && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                    className="absolute right-full top-0 mr-4 p-4 bg-black/70 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.8)] w-72"
+                  >
+                    {/* 顶部标题 */}
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <div className={`w-2 h-2 rounded-full ${isPlaying ? 'bg-cyan-400 animate-pulse' : 'bg-white/30'}`} />
+                        <span className="text-white font-bold text-xs tracking-wide">結束バンド - ギターと孤独と蒼い惑星</span>
+                      </div>
+                      <button onClick={() => setShowBgmPlayer(false)} className="p-1 rounded-lg bg-white/5 text-white/40 hover:text-white transition-all">
+                        <CloseIcon size={12} />
+                      </button>
+                    </div>
+
+                    {/* 进度条 */}
+                    <div className="mb-2">
+                      <input
+                        type="range"
+                        min={0}
+                        max={bgmDuration || 100}
+                        value={bgmCurrentTime}
+                        onChange={(e) => { if (audioRef.current) audioRef.current.currentTime = parseFloat(e.target.value); }}
+                        className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer
+                          [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3
+                          [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cyan-400
+                          [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(0,255,255,0.8)]"
+                        style={{
+                          background: `linear-gradient(to right, rgb(34,211,238) ${bgmDuration ? (bgmCurrentTime / bgmDuration) * 100 : 0}%, rgba(255,255,255,0.1) 0%)`,
+                        }}
+                      />
+                      <div className="flex justify-between mt-1">
+                        <span className="text-[10px] font-mono text-white/40">{formatTime(bgmCurrentTime)}</span>
+                        <span className="text-[10px] font-mono text-white/40">{formatTime(bgmDuration)}</span>
+                      </div>
+                    </div>
+
+                    {/* 控制栏 */}
+                    <div className="flex items-center justify-between mb-3">
+                      <button
+                        onClick={toggleMusic}
+                        className="p-2 rounded-lg bg-cyan-500/20 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/30 transition-all"
+                      >
+                        {isPlaying ? <Pause size={16} /> : <Play size={16} />}
+                      </button>
+                      <span className="text-[10px] font-mono text-white/30">結束バンド</span>
+                      <Music size={14} className="text-white/30" />
+                    </div>
+
+                    {/* 歌词面板 */}
+                    <div className="max-h-[120px] overflow-hidden rounded-xl">
+                      <LyricsPanel
+                        lyricsSource={bgmLyrics}
+                        currentTime={bgmCurrentTime}
+                        songTitle="ギターと孤独と蒼い惑星"
+                        songArtist="結束バンド"
+                        height={120}
+                      />
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             {/* 2. 多语言下拉选择器 (在下方) */}
             <div className="relative">
@@ -260,7 +386,7 @@ function App() {
                 exit={{ opacity: 0 }}
                 className="relative z-20"
               >
-                <Loader onFinish={() => setStage('login')} style={{ position: 'relative' }} />
+                <Loader onFinish={handleLoadingFinish} style={{ position: 'relative' }} />
               </motion.div>
             )}
 
@@ -364,11 +490,11 @@ function App() {
                 onBack={() => {
                   if (audioRef && audioRef.current && isPlaying) {
                     audioRef.current.pause();
-                    audioRef.current.src = "/bgm.mp3";
+                    audioRef.current.src = "/結束バンド - ギターと孤独と蒼い惑星.mp3";
                     const playPromise = audioRef.current.play();
                     if (playPromise !== undefined) playPromise.catch(e => console.warn(e));
                   } else if (audioRef && audioRef.current) {
-                    audioRef.current.src = "/bgm.mp3";
+                    audioRef.current.src = "/結束バンド - ギターと孤独と蒼い惑星.mp3";
                   }
                   setStage('main')
                 }}
