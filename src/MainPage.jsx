@@ -409,7 +409,7 @@ export default function MainPage({
                   year: t('main.edu.ujs_year'),
                   title: t('main.edu.ujs_title'),
                   desc: t('main.edu.ujs_desc'),
-                  bgImage: "/jdhp.jpg",
+                  bgImage: "/guet.jpg",
                   fullDesc: t('main.edu.ujs_full'),
                   borderColor: "border-purple-400",
                   textColor: "text-purple-400"

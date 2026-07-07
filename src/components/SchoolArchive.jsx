@@ -9,7 +9,7 @@ export default function SchoolArchive({ school, onBack, bgmAudioRef, isBgmPlayin
 
   // Video mapping for different schools
   const videoMapping = {
-    "桂林电子科技大学": "/jsdx.mp4"
+    "桂林电子科技大学": "null"
   };
 
   const matchedVideoKey = Object.keys(videoMapping).find(key => school.title.includes(key));
@@ -17,7 +17,7 @@ export default function SchoolArchive({ school, onBack, bgmAudioRef, isBgmPlayin
 
   // Logo mapping for the command center return button
   const logoMapping = {
-    "桂林电子科技大学": "/gldz-logo.jpg"
+    "桂林电子科技大学": "guet-logo.png"
   };
   const matchedLogoKey = Object.keys(logoMapping).find(key => school.title.includes(key));
   const logoSrc = matchedLogoKey ? logoMapping[matchedLogoKey] : null;
@@ -91,11 +91,12 @@ export default function SchoolArchive({ school, onBack, bgmAudioRef, isBgmPlayin
             transition={{ duration: 1 }}
             className="absolute inset-0 z-50 bg-black flex items-center justify-center pointer-events-none"
           >
-            <video 
-              autoPlay 
-              muted 
+            <video
+              autoPlay
+              muted
               playsInline
               onEnded={() => setVideoFinished(true)}
+              onError={() => setVideoFinished(true)}
               className="w-full h-full object-cover"
             >
               <source src={videoSrc} type="video/mp4" />
@@ -138,7 +139,7 @@ export default function SchoolArchive({ school, onBack, bgmAudioRef, isBgmPlayin
                 </h1>
                 <div className="inline-flex items-center gap-2 md:gap-3 px-2 py-1 md:px-3 md:py-1.5 rounded-lg bg-white/5 border border-white/10 backdrop-blur-xl font-mono text-cyan-400 text-[8px] md:text-[10px] tracking-[0.2em] uppercase">
                   <Terminal size={10} className="animate-pulse" />
-                  Timeline: {school.year} // Node_ID: JSDU_01
+                  Timeline: {school.year} // Node ID：GUET 01
                 </div>
               </motion.div>
 
@@ -288,7 +289,7 @@ export default function SchoolArchive({ school, onBack, bgmAudioRef, isBgmPlayin
         )}
       </AnimatePresence>
 
-      {/* 🎵 江大校歌播放器 */}
+      {/* 🎵 */}
       <CyberMusicPlayer
         logoSrc={logoSrc}
         onBgmPause={() => {

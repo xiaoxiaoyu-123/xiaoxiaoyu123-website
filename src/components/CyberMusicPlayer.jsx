@@ -98,7 +98,7 @@ export default function CyberMusicPlayer({ logoSrc, onBgmPause, onBgmResume }) {
       audio.removeEventListener('timeupdate', () => { });
       audio.removeEventListener('ended', () => { });
       audio.src = '';
-      // 退出江大页面时，恢复主页BGM
+      // 退出桂电页面时，恢复主页BGM
       onBgmResume?.();
     };
   }, []);
