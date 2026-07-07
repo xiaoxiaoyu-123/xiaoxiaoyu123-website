@@ -3,8 +3,9 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, useTexture, useVideoTexture, useProgress } from '@react-three/drei';
 import * as THREE from 'three';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, MapPin, Calendar, ArrowLeft, Sparkles, Move, Image as ImageIcon, XCircle, SkipForward, Play, Pause, Music } from 'lucide-react';
+import { X, MapPin, Calendar, ArrowLeft, Sparkles, Move, Image as ImageIcon, XCircle, SkipForward, Play, Pause, Music, FileText } from 'lucide-react';
 import { PHOTO_DATA } from '../config/photos';
+import LyricsPanel from './LyricsPanel';
 
 const COLORS = {
     STAR_WHITE: new THREE.Color("#ffffff"),
@@ -423,8 +424,122 @@ function MusicVisualizer({ isPlaying }) {
 }
 
 const PLAYLIST = [
-  { title: "小半", artist: "陈粒", url: "/陈粒 - 小半(1).mp3" },
-  { title: "Angel", artist: "尹美莱", url: "/2975e43400a24b48b6729715c2f2ad27(1).mp3" }
+  { title: "小半", artist: "陈粒", url: "/陈粒-小半.mp3", lyrics: [
+    { time: 0.01, text: "不敢回看" },
+    { time: 2.25, text: "左顾右盼不自然的暗自喜欢" },
+    { time: 6.82, text: "偷偷搭讪总没完地坐立难安" },
+    { time: 11.26, text: "试探说晚安 多空泛又心酸" },
+    { time: 17.57, text: "低头呢喃" },
+    { time: 20.02, text: "对你的偏爱太过于明目张胆" },
+    { time: 24.31, text: "在原地打转的小丑伤心不断" },
+    { time: 28.64, text: "空空留遗憾 多难堪又为难" },
+    { time: 34.87, text: "释然 慵懒 尽欢 时间风干后你我再无关" },
+    { time: 43.60, text: "没答案 怎么办 看不惯我自我欺瞒" },
+    { time: 51.59, text: "纵容着 喜欢的 讨厌的 宠溺的 厌倦的" },
+    { time: 57.04, text: "一个个慢慢黯淡" },
+    { time: 60.28, text: "纵容着 任性的 随意的 放肆的 轻易的" },
+    { time: 65.78, text: "将所有欢脱倾翻" },
+    { time: 69.10, text: "不应该 太心软 不大胆 太死板 不果断" },
+    { time: 74.53, text: "玩弄着肆无忌惮" },
+    { time: 77.82, text: "不应该 舍弃了 死心了 放手了 断念了" },
+    { time: 83.25, text: "无可奈何不耐烦" },
+    { time: 86.98, text: "不算" },
+    { time: 91.56, text: "灯火阑珊" },
+    { time: 94.09, text: "我的心借了你的光是明是暗" },
+    { time: 98.42, text: "笑自己情绪太泛滥形只影单" },
+    { time: 102.79, text: "自嘲成习惯 多敏感又难缠" },
+    { time: 109.36, text: "低头呢喃" },
+    { time: 111.49, text: "对你的偏爱太过于明目张胆" },
+    { time: 115.87, text: "在原地打转的小丑伤心不断" },
+    { time: 120.27, text: "空空留遗憾 多难堪又为难" },
+    { time: 126.50, text: "释然 慵懒 尽欢 时间风干后你我再无关" },
+    { time: 134.95, text: "没答案 怎么办 看不惯我自我欺瞒" },
+    { time: 143.08, text: "纵容着 喜欢的 讨厌的 宠溺的 厌倦的" },
+    { time: 148.67, text: "一个个慢慢黯淡" },
+    { time: 151.88, text: "纵容着 任性的 随意的 放肆的 轻易的" },
+    { time: 157.38, text: "将所有欢脱倾翻" },
+    { time: 160.66, text: "不应该 太心软 不大胆 太死板 不果断" },
+    { time: 166.08, text: "玩弄着肆无忌惮" },
+    { time: 169.26, text: "不应该 舍弃了 死心了 放手了 断念了" },
+    { time: 174.84, text: "无可奈何不耐烦" },
+    { time: 195.63, text: "任由着 你躲闪 我追赶 你走散 我呼喊" },
+    { time: 198.81, text: "是谁在泛泛而谈" },
+    { time: 204.30, text: "任由着 你来了 你笑了 你走了 不看我" },
+    { time: 209.76, text: "与理所当然分摊" },
+    { time: 213.16, text: "不明白 残存的 没用的 多余的 不必的" },
+    { time: 218.44, text: "破烂也在手紧攥" },
+    { time: 221.77, text: "不明白 谁赧然 谁无端 谁古板 谁极端" },
+    { time: 227.19, text: "无辜不知所以然" },
+    { time: 231.16, text: "不管" },
+    { time: 233.59, text: "纵容着 喜欢的 讨厌的 宠溺的 厌倦的" },
+    { time: 235.90, text: "一个个慢慢黯淡" },
+    { time: 239.19, text: "纵容着 任性的 随意的 放肆的 轻易的" },
+    { time: 244.64, text: "将所有欢脱倾翻" },
+    { time: 247.94, text: "不应该 太心软 不大胆 太死板 不果断" },
+    { time: 253.36, text: "玩弄着肆无忌惮" },
+    { time: 256.66, text: "不应该 舍弃了 死心了 放手了 断念了" },
+    { time: 262.11, text: "无可奈何不耐烦" },
+  ] },
+  { title: "起风了", artist: "冯沁苑(买辣椒也用券)", url: "/冯沁苑(买辣椒也用券)-起风了.mp3", lyrics: [
+    { time: 25.237, text: "这一路上走走停停" },
+    { time: 28.592, text: "顺着少年漂流的痕迹" },
+    { time: 31.681, text: "迈出车站的前一刻" },
+    { time: 34.795, text: "竟有些犹豫" },
+    { time: 37.794, text: "不禁笑这近乡情怯" },
+    { time: 41.191, text: "仍无可避免" },
+    { time: 43.819, text: "而长野的天" },
+    { time: 45.134, text: "依旧那么暖" },
+    { time: 46.684, text: "风吹起了从前" },
+    { time: 49.153, text: "从前初识这世间" },
+    { time: 52.185, text: "万般流连" },
+    { time: 53.962, text: "看着天边似在眼前" },
+    { time: 56.798, text: "也甘愿赴汤蹈火去走它一遍" },
+    { time: 61.966, text: "如今走过这世间" },
+    { time: 65.001, text: "万般流连" },
+    { time: 66.632, text: "翻过岁月不同侧脸" },
+    { time: 69.861, text: "措不及防闯入你的笑颜" },
+    { time: 75.513, text: "我曾难自拔于世界之大" },
+    { time: 79.605, text: "也沉溺于其中梦话" },
+    { time: 82.837, text: "不得真假 不做挣扎 不惧笑话" },
+    { time: 88.501, text: "我曾将青春翻涌成她" },
+    { time: 91.930, text: "也曾指尖弹出盛夏" },
+    { time: 95.281, text: "心之所动 且就随缘去吧" },
+    { time: 101.156, text: "逆着光行走 任风吹雨打" },
+    { time: 118.028, text: "短短的路走走停停" },
+    { time: 121.171, text: "也有了几分的距离" },
+    { time: 124.236, text: "不知抚摸的是故事 还是段心情" },
+    { time: 130.711, text: "也许期待的不过是 与时间为敌" },
+    { time: 136.193, text: "再次看到你" },
+    { time: 137.991, text: "微凉晨光里" },
+    { time: 139.556, text: "笑得很甜蜜" },
+    { time: 142.116, text: "从前初识这世间" },
+    { time: 144.937, text: "万般流连" },
+    { time: 146.663, text: "看着天边似在眼前" },
+    { time: 149.616, text: "也甘愿赴汤蹈火去走它一遍" },
+    { time: 154.711, text: "如今走过这世间" },
+    { time: 157.657, text: "万般流连" },
+    { time: 159.389, text: "翻过岁月不同侧脸" },
+    { time: 162.360, text: "措不及防闯入你的笑颜" },
+    { time: 168.265, text: "我曾难自拔于世界之大" },
+    { time: 172.336, text: "也沉溺于其中梦话" },
+    { time: 175.538, text: "不得真假 不做挣扎 不惧笑话" },
+    { time: 181.140, text: "我曾将青春翻涌成她" },
+    { time: 185.235, text: "也曾指尖弹出盛夏" },
+    { time: 188.062, text: "心之所动 且就随缘去吧" },
+    { time: 219.324, text: "晚风吹起你鬓间的白发" },
+    { time: 223.574, text: "抚平回忆留下的疤" },
+    { time: 226.788, text: "你的眼中 明暗交杂 一笑生花" },
+    { time: 232.294, text: "暮色遮住你蹒跚的步伐" },
+    { time: 236.330, text: "走进床头藏起的画" },
+    { time: 239.544, text: "画中的你 低着头说话" },
+    { time: 245.074, text: "我仍感叹于世界之大" },
+    { time: 248.784, text: "也沉醉于儿时情话" },
+    { time: 252.150, text: "不剩真假 不做挣扎 无谓笑话" },
+    { time: 257.925, text: "我终将青春还给了她" },
+    { time: 261.677, text: "连同指尖弹出的盛夏" },
+    { time: 265.007, text: "心之所动 就随风去了" },
+    { time: 270.601, text: "以爱之名 你还愿意吗" },
+  ] }
 ];
 
 export default function MemoryArchive({ onBack, bgmAudioRef, isBgmPlaying, setIsBgmPlaying }) {
@@ -433,6 +548,8 @@ export default function MemoryArchive({ onBack, bgmAudioRef, isBgmPlaying, setIs
   const [forceLoad, setForceLoad] = useState(false);
   const [isLocalPlaying, setIsLocalPlaying] = useState(false);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [showLyrics, setShowLyrics] = useState(false);
   const localAudioRef = useRef(null);
   const initiallyPlaying = useRef(false);
   
@@ -548,6 +665,9 @@ export default function MemoryArchive({ onBack, bgmAudioRef, isBgmPlaying, setIs
     const audio = new Audio(PLAYLIST[currentTrackIndex].url);
     audio.loop = true;
     audio.volume = 1.0; // 设置基准音量
+    audio.ontimeupdate = () => {
+      setCurrentTime(audio.currentTime);
+    };
     localAudioRef.current = audio;
 
     let audioCtx = null;
@@ -599,6 +719,12 @@ export default function MemoryArchive({ onBack, bgmAudioRef, isBgmPlaying, setIs
   const handleNextTrack = (e) => {
     e.stopPropagation();
     setCurrentTrackIndex((prev) => (prev + 1) % PLAYLIST.length);
+  };
+
+  const formatTime = (t) => {
+    const m = Math.floor(t / 60);
+    const s = Math.floor(t % 60);
+    return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
   };
 
   // --- [NEW] 处理视频与背景音乐冲突 ---
@@ -694,7 +820,7 @@ export default function MemoryArchive({ onBack, bgmAudioRef, isBgmPlaying, setIs
                {isLocalPlaying ? <Pause size={16} /> : <Play size={16} fill="white" />}
              </button>
 
-             <button 
+             <button
                onClick={handleNextTrack}
                title="切换下一首"
                style={{ background: 'none', border: 'none', color: 'white', opacity: 0.6, cursor: 'pointer', transition: 'all 0.3s', display: 'flex', alignItems: 'center' }}
@@ -703,9 +829,43 @@ export default function MemoryArchive({ onBack, bgmAudioRef, isBgmPlaying, setIs
              >
                <SkipForward size={16} />
              </button>
+
+             <span style={{ fontSize: '10px', fontFamily: 'monospace', color: 'rgba(255,255,255,0.4)', width: '40px', textAlign: 'center', fontVariantNumeric: 'tabular-nums' }}>
+               {formatTime(currentTime)}
+             </span>
+
+             <button
+               onClick={() => setShowLyrics(!showLyrics)}
+               title="歌词"
+               style={{ background: showLyrics ? 'rgba(34,211,238,0.2)' : 'none', border: showLyrics ? '1px solid rgba(34,211,238,0.3)' : 'none', color: showLyrics ? '#22d3ee' : 'white', opacity: 0.6, cursor: 'pointer', transition: 'all 0.3s', display: 'flex', alignItems: 'center', padding: '4px', borderRadius: '8px' }}
+               onMouseEnter={(e) => { if (!showLyrics) e.currentTarget.style.opacity = '1'; }}
+               onMouseLeave={(e) => { if (!showLyrics) e.currentTarget.style.opacity = '0.6'; }}
+             >
+               <FileText size={16} />
+             </button>
           </div>
         </div>
       </div>
+
+      {/* 歌词面板 */}
+      <AnimatePresence>
+        {showLyrics && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            style={{ position: 'absolute', top: '7rem', left: '2.5rem', zIndex: 6000 }}
+          >
+            <LyricsPanel
+              lyricsSource={PLAYLIST[currentTrackIndex].lyrics}
+              currentTime={currentTime}
+              songTitle={PLAYLIST[currentTrackIndex].title}
+              songArtist={PLAYLIST[currentTrackIndex].artist}
+              height={160}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Canvas dpr={[1, 1.5]} camera={{ position: [0, 15, 80], fov: 42 }} gl={{ alpha: false, antialias: true, logarithmicDepthBuffer: true }}>
         <color attach="background" args={['#000000']} />

@@ -332,10 +332,10 @@ export default function MainPage({
               
               <div className="flex flex-col gap-3">
                 {[
-                  { label: 'AI Agents / Prompting', tag: t('main.tags.t1') },
-                  { label: 'Python / Manim', tag: t('main.tags.t2') },
-                  { label: 'ShadowBot / Octopus', tag: t('main.tags.t3') },
-                  { label: 'React / Framer Motion', tag: t('main.tags.t4') },
+                  { label: 'Vue / React', tag: t('main.tags.t1') },
+                  { label: 'Nuxt.js / Next.js', tag: t('main.tags.t2') },
+                  { label: 'VibeCoding / Agent', tag: t('main.tags.t3') },
+                  { label: 'Python / FastAPI', tag: t('main.tags.t4') },
                   { label: 'Linux / Shell', tag: t('main.tags.t5') }
                 ].map((skill, i) => (
                   <div key={i} className="px-4 py-3 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-between font-medium hover:bg-white/10 transition-colors cursor-default group/skill">

@@ -3,32 +3,63 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause, Volume2, VolumeX, Music, X as CloseIcon } from 'lucide-react';
 
 // 歌词数据（带时间轴，单位：秒）
-// 锚点：第一句20s，"博学奠基石"57s
-// 如需微调：改 time 值即可
 const lyricsData = [
-  { time: 0, text: '♫ 前奏 ♫' },
-  // === 第一段 ===
-  { time: 20, text: '百年风雨，我们一同起航，' },
-  { time: 28, text: '三山如画，我们阅尽沧桑。' },
-  { time: 36, text: '悠悠长江在这里奔涌，' },
-  { time: 44, text: '绵绵文脉在这里激扬。' },
-  { time: 57, text: '博学奠基石，求是谱华章，' },
-  { time: 65, text: '明德镌心灵，教学共相长。' },
-  { time: 73, text: '江苏大学，我们为你骄傲，' },
-  { time: 81, text: '继往开来创造新的辉煌！' },
-  // === 间奏 ===
-  { time: 90, text: '♫ 间奏 ♫' },
-  // === 第二段 ===
-  { time: 108, text: '百川融汇，我们一起飞翔，' },
-  { time: 116, text: '薪火相传，我们超越梦想。' },
-  { time: 124, text: '棵棵栋梁在这里成长，' },
-  { time: 132, text: '灿灿桃李在这里绽放。' },
-  { time: 145, text: '博学奠基石，求是谱华章，' },
-  { time: 153, text: '明德镌心灵，教学共相长。' },
-  { time: 161, text: '江苏大学，我们为你骄傲，' },
-  { time: 169, text: '继往开来创造新的辉煌！' },
-  { time: 178, text: '新的辉煌！' },
-  { time: 185, text: '♫ ♫ ♫' },
+  { time: 0.35, text: '刘冠希：离别的眼泪我还不懂' },
+  { time: 4.03, text: '孔舒航：回忆淡淡的就像风' },
+  { time: 7.38, text: '刘冠希：期待一道彩虹' },
+  { time: 9.84, text: '合：连接我们的天空' },
+  { time: 30.01, text: '田翌臣：儿时的脚踏车在回忆里褪了色' },
+  { time: 33.54, text: '还记得你曾经最喜欢的那首歌' },
+  { time: 37.18, text: '记得那种快乐的颜色' },
+  { time: 44.10, text: '毛若懿：黄昏的夕阳勾勒出来的景象' },
+  { time: 47.82, text: '你微笑看远方' },
+  { time: 50.47, text: '一颗星能许多少愿望' },
+  { time: 52.78, text: '拥有多少梦想' },
+  { time: 58.34, text: '金成焕：你低声说不想离开' },
+  { time: 61.57, text: '而我还不明白' },
+  { time: 64.81, text: '时间拉着我们跑向不同的天空' },
+  { time: 68.14, text: '实现不同的梦' },
+  { time: 71.14, text: '刘冠希：在夕阳下最后的拥抱' },
+  { time: 74.82, text: '孔舒航：记得你甜美的心跳' },
+  { time: 78.29, text: '刘冠希：写下约定的墙角' },
+  { time: 81.32, text: '是最美丽的记号' },
+  { time: 85.31, text: '孔舒航：离别的眼泪我还不懂' },
+  { time: 89.21, text: '刘冠希：回忆淡淡的就像风' },
+  { time: 92.63, text: '孔舒航：期待一道彩虹' },
+  { time: 95.09, text: '连接我们的天空' },
+  { time: 117.04, text: '金成焕：你低声说不想离开' },
+  { time: 120.15, text: '而我还不明白' },
+  { time: 123.71, text: '时间拉着我们跑向不同的天空' },
+  { time: 127.03, text: '实现不同的梦' },
+  { time: 129.91, text: '刘冠希：在夕阳下最后的拥抱' },
+  { time: 133.66, text: '孔舒航：记得你甜美的心跳' },
+  { time: 136.90, text: '刘冠希：写下约定的墙角' },
+  { time: 139.91, text: '是最美丽的记号' },
+  { time: 143.90, text: '孔舒航：离别的眼泪我还不懂' },
+  { time: 147.84, text: '刘冠希：回忆淡淡的就像风' },
+  { time: 151.20, text: '孔舒航：期待一道彩虹' },
+  { time: 153.74, text: '连接我们的天空' },
+  { time: 158.94, text: '李炯柱：如果爱变成剪不断的思念' },
+  { time: 162.46, text: '止不住停不下的时间' },
+  { time: 166.12, text: '等到雨停之后' },
+  { time: 168.31, text: '那一道彩虹' },
+  { time: 169.88, text: '把回忆带到永远 Yeah' },
+  { time: 175.72, text: '刘冠希：在夕阳下最后的拥抱' },
+  { time: 179.74, text: '孔舒航：记得你甜美的心跳' },
+  { time: 183.06, text: '刘冠希：写下约定的墙角' },
+  { time: 185.99, text: '是最美丽的记号' },
+  { time: 190.24, text: '孔舒航：离别的眼泪我还不懂' },
+  { time: 193.87, text: '刘冠希：回忆淡淡的就像风' },
+  { time: 197.52, text: '孔舒航：期待一道彩虹' },
+  { time: 199.94, text: '连接我们的天空' },
+  { time: 204.65, text: '刘冠希：在夕阳下最后的拥抱' },
+  { time: 208.15, text: '孔舒航：记得你甜美的心跳' },
+  { time: 211.47, text: '刘冠希：写下约定的墙角' },
+  { time: 214.53, text: '是最美丽的记号' },
+  { time: 218.68, text: '孔舒航：离别的眼泪我还不懂' },
+  { time: 222.27, text: '刘冠希：回忆淡淡的就像风' },
+  { time: 225.75, text: '孔舒航：期待一道彩虹' },
+  { time: 228.40, text: '连接我们的天空' },
 ];
 
 export default function CyberMusicPlayer({ logoSrc, onBgmPause, onBgmResume }) {
@@ -44,7 +75,7 @@ export default function CyberMusicPlayer({ logoSrc, onBgmPause, onBgmResume }) {
 
   // 初始化音频
   useEffect(() => {
-    const audio = new Audio('/群星 - 百年辉煌向未来.mp3');
+    const audio = new Audio('/TimeZ-彩虹.mp3');
     audio.volume = 1.0;
     audio.loop = true;
     audioRef.current = audio;
@@ -179,8 +210,8 @@ export default function CyberMusicPlayer({ logoSrc, onBgmPause, onBgmResume }) {
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(0,255,255,0.8)]" />
                   <div>
-                    <h4 className="text-white font-bold text-sm tracking-wide">百年辉煌向未来</h4>
-                    <p className="text-cyan-400/60 font-mono text-[10px] tracking-[0.2em]">JSDU_ANTHEM // ACTIVE</p>
+                    <h4 className="text-white font-bold text-sm tracking-wide">彩虹</h4>
+                    <p className="text-cyan-400/60 font-mono text-[10px] tracking-[0.2em]">TimeZ // ANTHEM</p>
                   </div>
                 </div>
                 <button

@@ -51,7 +51,7 @@ export const mainTranslations = {
     core_tech: "核心技术",
     tech_stack: "技术栈",
     tags: {
-      t1: "核心驱动", t2: "逻辑可视化", t3: "效率工程", t4: "高阶交互", t5: "底层系统"
+      t1: "主流框架", t2: "接口框架", t3: "效率工程", t4: "后端开发", t5: "底层系统"
     },
     core_archives: "核心档案库",
     explore_school: "了解更多关于学校的背景与时间线",
@@ -124,7 +124,7 @@ export const mainTranslations = {
     core_tech: "核心技術",
     tech_stack: "技術棧",
     tags: {
-      t1: "核心驅動", t2: "邏輯可視化", t3: "效率工程", t4: "高階交互", t5: "底層系統"
+      t1: "主流框架", t2: "接口框架", t3: "效率工程", t4: "后端开发", t5: "底层系统"
     },
     core_archives: "核心檔案庫",
     explore_school: "了解更多關於學校的背景與時間線",
@@ -197,7 +197,7 @@ export const mainTranslations = {
     core_tech: "Core Tech",
     tech_stack: "Tech Stack",
     tags: {
-      t1: "Core Drive", t2: "Visual Logic", t3: "Efficiency Eng.", t4: "Advanced UX", t5: "Low-Level Sys."
+      t1: "Mainstream Frameworks", t2: "Interface Frameworks", t3: "Efficiency Eng.", t4: "Backend Development", t5: "Low-Level Systems"
     },
     core_archives: "Core Archives",
     explore_school: "Learn more about school background and timeline",
@@ -270,7 +270,7 @@ export const mainTranslations = {
     core_tech: "Tecnologia Central",
     tech_stack: "Tech Stack",
     tags: {
-      t1: "Motor Central", t2: "Lógica Visual", t3: "Eng. de Eficiência", t4: "UX Avançado", t5: "Sistemas de Baixo Nível"
+      t1: "Mainstream Frameworks", t2: "Interface Frameworks", t3: "Efficiency Eng.", t4: "Backend Development", t5: "Low-Level Systems"
     },
     core_archives: "Arquivos Centrais",
     explore_school: "Saiba mais sobre o histórico e cronograma da faculdade",
@@ -343,7 +343,7 @@ export const mainTranslations = {
     core_tech: "Tecnología Central",
     tech_stack: "Tech Stack",
     tags: {
-      t1: "Motor Base", t2: "Lógica Visual", t3: "Ing. de Eficiencia", t4: "UX Avanzado", t5: "Sistemas de Bajo Nivel"
+      t1: "Mainstream Frameworks", t2: "Interface Frameworks", t3: "Efficiency Eng.", t4: "Backend Development", t5: "Low-Level Systems"
     },
     core_archives: "Archivos Centrales",
     explore_school: "Conozca más sobre los antecedentes y cronograma de la universidad",
@@ -489,7 +489,7 @@ export const mainTranslations = {
     core_tech: "Tech Fondamentale",
     tech_stack: "Tech Stack",
     tags: {
-      t1: "Moteur Central", t2: "Logique Visuelle", t3: "Ing. d'Efficacité", t4: "UX Avancée", t5: "Systèmes Bas Niveau"
+      t1: "Mainstream Frameworks", t2: "Interface Frameworks", t3: "Efficiency Eng.", t4: "Backend Development", t5: "Low-Level Systems"
     },
     core_archives: "Archives Centrales",
     explore_school: "En savoir plus sur le contexte et la chronologie de l'université",

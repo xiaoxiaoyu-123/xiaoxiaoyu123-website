@@ -1,7 +1,107 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { X, ArrowLeft, ChevronRight, ChevronLeft, Play, Pause, Volume2, VolumeX, Maximize2, MapPin } from 'lucide-react';
+import { X, ArrowLeft, ChevronRight, ChevronLeft, Play, Pause, Volume2, VolumeX, Maximize2, MapPin, FileText } from 'lucide-react';
 import AMapLoader from '@amap/amap-jsapi-loader';
+import LyricsPanel from './LyricsPanel';
+
+// 地图全屏背景音乐歌词（SawanoHiroyuki[nZk],Rei - INERTIA）
+const mapBgmLyrics = [
+  { time: 6.000, text: "I always knew where I stood" },
+  { time: 10.000, text: "I tried to be so good" },
+  { time: 14.000, text: "Look at me now, I dunno know how but" },
+  { time: 17.800, text: "I'm a real hero" },
+  { time: 22.500, text: "No hiding in the shadows, time to strut" },
+  { time: 26.300, text: "I'm gonna make a splash to make this cut" },
+  { time: 30.000, text: "You've got to believe that I am free" },
+  { time: 33.800, text: "So no hesitation" },
+  { time: 37.500, text: "Picture your planet in disharmony" },
+  { time: 43.500, text: "Jump into the night, cuz I can smell the trouble" },
+  { time: 47.300, text: "Don't you miss the fight, just get there at the double" },
+  { time: 51.000, text: "I gotta make a difference, I'm moving with a purpose" },
+  { time: 54.800, text: "I'm feeling my inertia, inertia, inertia" },
+  { time: 59.000, text: "Stubbornly, I will believe, I will believe, keep dreaming" },
+  { time: 62.800, text: "Stubbornly, I will believe, I will believe, keep dreaming" },
+  { time: 66.700, text: "Is it my turn to be the hero?" },
+  { time: 69.000, text: "Yeah! Cuz I gotta be the hero" },
+  { time: 70.800, text: "Yeah! Cuz I gotta be the hero" },
+  { time: 72.700, text: "Yeah! Cuz I gotta be the hero" },
+  { time: 77.000, text: "Didn't you know it's enough just to deserve that love?" },
+  { time: 80.800, text: "Without a crowd, without a stage" },
+  { time: 84.500, text: "You're still a real hero" },
+  { time: 88.000, text: "I'm gonna be the last line of defense" },
+  { time: 91.500, text: "I'll blow it if I lack the confidence" },
+  { time: 95.000, text: "I've got to believe that there's a need for my whole existence" },
+  { time: 99.500, text: "Picture your planet in disharmony" },
+  { time: 105.000, text: "Jump into the night, cuz I can smell the trouble" },
+  { time: 108.500, text: "Don't you miss the fight, just get there at the double" },
+  { time: 112.000, text: "I gotta make a difference, I'm moving with a purpose" },
+  { time: 115.800, text: "I'm feeling my inertia, inertia, inertia" },
+  { time: 120.000, text: "Stubbornly, I will believe, I will believe, keep dreaming" },
+  { time: 123.800, text: "Stubbornly, I will believe, I will believe, keep dreaming" },
+  { time: 127.700, text: "Is it my turn to be the hero?" },
+  { time: 130.000, text: "Yeah! Cuz I gotta be the hero" },
+  { time: 131.800, text: "Yeah! Cuz I gotta be the hero" },
+  { time: 133.700, text: "Yeah! Cuz I gotta be the hero" },
+  { time: 138.000, text: "All my life they said that I was strange" },
+  { time: 141.800, text: "But I knew that I could be the change" },
+  { time: 145.000, text: "I still ain't done enough" },
+  { time: 148.500, text: "Not even close" },
+  { time: 154.500, text: "Jump into the night, cuz I can smell the trouble" },
+  { time: 158.000, text: "Don't you miss the fight, just get there at the double" },
+  { time: 161.500, text: "I gotta make a difference, I'm moving with a purpose" },
+  { time: 165.500, text: "I'm feeling my inertia, inertia, inertia" },
+  { time: 169.800, text: "Stubbornly, I will believe, I will believe, keep dreaming" },
+  { time: 173.000, text: "Stubbornly, I will believe, I will believe, keep dreaming" },
+  { time: 176.000, text: "Is it my turn to be the hero?" },
+  { time: 178.500, text: "Yeah! Cuz I gotta be the hero" },
+  { time: 180.500, text: "Yeah! Cuz I gotta be the hero" },
+  { time: 182.500, text: "Yeah! Cuz I gotta be the hero" },
+  { time: 186.000, text: "Jump into the night, cuz I can smell the trouble" },
+  { time: 187.500, text: "Don't you miss the fight, just get there at the double" },
+  { time: 189.000, text: "I gotta make a difference, I'm moving with a purpose" },
+  { time: 190.000, text: "I'm feeling my inertia, inertia, inertia" },
+  { time: 190.500, text: "Stubbornly, I will believe, I will believe, keep dreaming" },
+  { time: 191.000, text: "Stubbornly, I will believe, I will believe, keep dreaming" },
+  { time: 191.500, text: "Is it my turn to be the hero?" },
+  { time: 192.000, text: "Yeah! Cuz I gotta be the hero" },
+  { time: 192.800, text: "Yeah! Cuz I gotta be the hero" },
+  { time: 193.600, text: "Yeah! Cuz I gotta be the hero" },
+];
+
+// 兴趣页背景音乐歌词（西罕 - 我看过 女声版）
+const hobbiesBgmLyrics = [
+  { time: 3.75, text: "我看过你说好一辈子" },
+  { time: 7.27, text: "我看过你的无微不至" },
+  { time: 11.22, text: "我看过你说想要时间停止" },
+  { time: 15.27, text: "拉着我的手喊我名字" },
+  { time: 35.11, text: "你的回答都犹豫了一下" },
+  { time: 42.94, text: "在我面前怎么开始害怕说错话" },
+  { time: 50.63, text: "你在眺望窗外无关的景象" },
+  { time: 58.02, text: "保持沉默和你的优雅" },
+  { time: 65.95, text: "想陪你假装没事" },
+  { time: 69.42, text: "天真把分开延迟" },
+  { time: 73.61, text: "现实却比我们诚实" },
+  { time: 80.91, text: "我看过你说好一辈子" },
+  { time: 84.75, text: "我看过你的无微不至" },
+  { time: 88.68, text: "我看过你说想要时间停止" },
+  { time: 92.60, text: "拉着我的手喊我名字" },
+  { time: 96.35, text: "我看过你说谎的方式" },
+  { time: 100.37, text: "我看过爱情自然变质" },
+  { time: 104.30, text: "就算错过这样到此为止" },
+  { time: 111.84, text: "至少我看过你爱我的样子" },
+  { time: 117.63, text: "沉默空气戳破你的心事" },
+  { time: 121.55, text: "你难过伤心又有几次" },
+  { time: 125.22, text: "你脸上的陌生表情" },
+  { time: 127.39, text: "是你给的诠释" },
+  { time: 131.24, text: "我看着你飘忽的心思" },
+  { time: 135.01, text: "也看见我无谓的坚持" },
+  { time: 138.91, text: "亲爱的不要再说你还爱我" },
+  { time: 142.80, text: "因为看过你爱我的样子" },
+  { time: 147.01, text: "我看过的最美的落日" },
+  { time: 150.55, text: "是你陪我看海的样子" },
+  { time: 154.87, text: "就算错过这样到此为止" },
+  { time: 162.39, text: "至少我看过你爱我的样子" },
+];
 
 // 高德安全密钥配置（从环境变量读取，不在代码中硬编码）
 window._AMapSecurityConfig = {
@@ -1089,12 +1189,19 @@ export default function HobbiesSection({ onBack, bgmAudioRef, isBgmPlaying, setI
   const [isMapMusicPlaying, setIsMapMusicPlaying] = useState(false);
   const wasGlobalBgmPlaying = useRef(false);
 
+  // 当前播放时间 & 歌词显示
+  const [currentTime, setCurrentTime] = useState(0);
+  const [mapCurrentTime, setMapCurrentTime] = useState(0);
+  const [showLyrics, setShowLyrics] = useState(false);
+
   // 初始化地图专属 BGM
   useEffect(() => {
-    localMapAudioRef.current = new Audio('/779e8cc689a44e75a68c1dc883b7a1b4.mp3');
-    localMapAudioRef.current.loop = true;
-    localMapAudioRef.current.volume = 0.6; // 设置略高的音量增强沉浸感
-    
+    const audio = new Audio('/SawanoHiroyuki[nZk],Rei - INERTIA.mp3');
+    audio.loop = true;
+    audio.volume = 0.6;
+    audio.ontimeupdate = () => setMapCurrentTime(audio.currentTime);
+    localMapAudioRef.current = audio;
+
     return () => {
         if (localMapAudioRef.current) {
             localMapAudioRef.current.pause();
@@ -1366,6 +1473,21 @@ export default function HobbiesSection({ onBack, bgmAudioRef, isBgmPlaying, setI
     }
   };
 
+  const formatTime = (t) => {
+    const m = Math.floor(t / 60);
+    const s = Math.floor(t % 60);
+    return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  };
+
+  // 追踪全局 BGM 的播放进度
+  useEffect(() => {
+    const audio = bgmAudioRef?.current;
+    if (!audio) return;
+    const handler = () => setCurrentTime(audio.currentTime);
+    audio.addEventListener('timeupdate', handler);
+    return () => audio.removeEventListener('timeupdate', handler);
+  }, [bgmAudioRef]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -1403,11 +1525,50 @@ export default function HobbiesSection({ onBack, bgmAudioRef, isBgmPlaying, setI
 
             <div className="pl-2 border-l border-gray-200 hidden md:block">
                 <div className="text-[14px] font-bold text-[#1d1d1f]">
-                    {isMapExpanded ? "周深" : "My World"} / <span className="text-[#86868b]">{isMapExpanded ? "小美满" : "Passion"}</span>
+                    {isMapExpanded ? "INERTIA" : "我看过"} / <span className="text-[#86868b]">{isMapExpanded ? "SawanoHiroyuki" : "西罕"}</span>
                 </div>
+            </div>
+
+            {/* 播放时间 + 歌词按钮 */}
+            <div className="flex items-center gap-2 pl-4 border-l border-gray-200">
+              <span className="text-[11px] font-mono text-[#86868b] tabular-nums w-10 text-center">
+                {formatTime(isMapExpanded ? mapCurrentTime : currentTime)}
+              </span>
+              <button
+                onClick={() => setShowLyrics(!showLyrics)}
+                className={`p-2 rounded-full transition-all cursor-pointer active:scale-90 ${
+                  showLyrics
+                    ? 'bg-[#0071eb]/10 text-[#0071eb]'
+                    : 'text-[#86868b] hover:text-[#0071eb] hover:bg-[#0071eb]/5'
+                }`}
+                title="歌词"
+              >
+                <FileText size={16} />
+              </button>
             </div>
           </div>
       </div>
+
+      {/* 歌词面板 */}
+      <AnimatePresence>
+        {showLyrics && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="sticky top-20 z-[60] w-full max-w-md mx-auto px-6"
+          >
+            <LyricsPanel
+              lyricsSource={isMapExpanded ? mapBgmLyrics : hobbiesBgmLyrics}
+              currentTime={isMapExpanded ? mapCurrentTime : currentTime}
+              songTitle={isMapExpanded ? "INERTIA" : "我看过"}
+              songArtist={isMapExpanded ? "SawanoHiroyuki[nZk],Rei" : "西罕"}
+              height={160}
+              accentColor={isMapExpanded ? "cyan" : "purple"}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="relative pt-20 lg:pt-32 pb-20 px-6 lg:px-12 text-center overflow-hidden">
         <AssembleTitle />
@@ -1510,14 +1671,14 @@ export default function HobbiesSection({ onBack, bgmAudioRef, isBgmPlaying, setI
 
                              {/* [新增] 全屏地图下的音乐控制小胶囊 (右上角) */}
                              {isMapExpanded && (
-                                <div key="map-music-control" className="absolute top-4 right-4 z-[400] flex items-center gap-2 px-4 py-2 bg-black/40 hover:bg-black/60 border border-white/10 backdrop-blur-md rounded-full transition-all shadow-xl">
-                                                                         <button 
+                                <div key="map-music-control" className="absolute top-4 right-4 z-[400] flex items-center gap-3 px-4 py-2 bg-black/40 hover:bg-black/60 border border-white/10 backdrop-blur-md rounded-full transition-all shadow-xl">
+                                    <button
                                          onClick={toggleLocalMusic}
                                          className="flex items-center gap-4 cursor-pointer group"
                                      >
                                          <MusicVisualizer isPlaying={isMapMusicPlaying} />
                                          <div className="flex flex-col text-left">
-                                             <span className="text-[12px] font-bold text-white/90 leading-none mb-1">周深 - 小美满</span>
+                                             <span className="text-[12px] font-bold text-white/90 leading-none mb-1">INERTIA</span>
                                              <span className="text-[10px] text-white/40 leading-none">
                                                  {isMapMusicPlaying ? '正在播放' : '已暂停'}
                                              </span>
@@ -1530,8 +1691,41 @@ export default function HobbiesSection({ onBack, bgmAudioRef, isBgmPlaying, setI
                                             )}
                                          </div>
                                      </button>
+
+                                     {/* 播放时间 */}
+                                     <span className="text-[10px] font-mono text-white/40 tabular-nums w-10 text-center">
+                                       {formatTime(mapCurrentTime)}
+                                     </span>
+
+                                     {/* 歌词按钮 */}
+                                     <button
+                                       onClick={() => setShowLyrics(!showLyrics)}
+                                       className={`p-1.5 rounded-full transition-all cursor-pointer ${
+                                         showLyrics
+                                           ? 'bg-cyan-500/20 text-cyan-400'
+                                           : 'text-white/40 hover:text-cyan-400 hover:bg-white/5'
+                                       }`}
+                                       title="歌词"
+                                     >
+                                       <FileText size={14} />
+                                     </button>
                                 </div>
                              )}
+
+                             {/* 地图模式歌词面板 */}
+                             {isMapExpanded && showLyrics && (
+                               <div className="absolute top-20 right-4 z-[400] w-72">
+                                 <LyricsPanel
+                                   lyricsSource={mapBgmLyrics}
+                                   currentTime={mapCurrentTime}
+                                   songTitle="INERTIA"
+                                   songArtist="SawanoHiroyuki[nZk],Rei"
+                                   height={200}
+                                   accentColor="cyan"
+                                 />
+                               </div>
+                             )}
+
                              <div 
                                  ref={mapContainerRef}
                                  key="amap-container-core"

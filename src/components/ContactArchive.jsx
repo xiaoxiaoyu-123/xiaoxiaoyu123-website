@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { 
-  ArrowLeft, 
-  Mail, 
-  Twitter, 
-  Instagram, 
-  MessageCircle, 
-  AtSign, 
+import {
+  ArrowLeft,
+  Mail,
+  Twitter,
+  Instagram,
+  MessageCircle,
+  AtSign,
   Terminal,
   ScanLine,
   Phone,
@@ -21,14 +21,15 @@ import {
   Music,
   Play,
   Pause,
-  SkipForward
+  SkipForward,
+  FileText
 } from 'lucide-react';
+import LyricsPanel from './LyricsPanel';
 
 // 🚀 模块化导入二维码，确保打包后路径百分百正确，永不丢失
 import wechatQR from '../assets/qr/wechat.jpg';
 import qqQR from '../assets/qr/qq.jpg';
 import whatsappQR from '../assets/qr/whatsapp.jpg';
-import douyinQR from '../assets/qr/douyin.jpg';
 
 const WeChatIcon = ({ size = 20, className }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" stroke="none" className={className}>
@@ -39,12 +40,6 @@ const WeChatIcon = ({ size = 20, className }) => (
 const QQIcon = ({ size = 20, className }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" stroke="none" className={className}>
     <path d="M21.395 15.035a40 40 0 0 0-.803-2.264l-1.079-2.695c.001-.032.014-.562.014-.836C19.526 4.632 17.351 0 12 0S4.474 4.632 4.474 9.241c0 .274.013.804.014.836l-1.08 2.695a39 39 0 0 0-.802 2.264c-1.021 3.283-.69 4.643-.438 4.673.54.065 2.103-2.472 2.103-2.472 0 1.469.756 3.387 2.394 4.771-.612.188-1.363.479-1.845.835-.434.32-.379.646-.301.778.343.578 5.883.369 7.482.189 1.6.18 7.14.389 7.483-.189.078-.132.132-.458-.301-.778-.483-.356-1.233-.646-1.846-.836 1.637-1.384 2.393-3.302 2.393-4.771 0 0 1.563 2.537 2.103 2.472.251-.03.581-1.39-.438-4.673" />
-  </svg>
-);
-
-const DouyinIcon = ({ size = 20, className }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" stroke="none" className={className}>
-    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
   </svg>
 );
 
@@ -127,8 +122,128 @@ function MusicVisualizer({ isPlaying }) {
 }
 
 const PLAYLIST = [
-  { title: "房间", artist: "刘瑞琦", url: "/0b620cb628864f349842ff5453e9b078.mp3" },
-  { title: "零距离的思念", artist: "TINY7", url: "/85a285ae06ab4db2ad6caa30b2af39e8(1).mp3" }
+  { title: "瞬", artist: "郑润泽 ", url: "/郑润泽-瞬.mp3", lyrics: [
+    { time: 21, text: "我想 说不清哪天" },
+    { time: 24, text: "你就会回来" },
+    { time: 26, text: "可太多的思念" },
+    { time: 29, text: "却压着时钟转" },
+    { time: 33, text: "喜欢 在夜深人静" },
+    { time: 37, text: "零碎的不堪" },
+    { time: 40, text: "能孤单的 大胆" },
+    { time: 46, text: "太多挂念" },
+    { time: 49, text: "光好刺眼" },
+    { time: 53, text: "殆尽之前" },
+    { time: 55, text: "你出现在我眼前" },
+    { time: 59, text: "就当是我的幻觉 慢一点" },
+    { time: 64, text: "如果倒转思念" },
+    { time: 68, text: "在这之前" },
+    { time: 71, text: "能够将我换为你来选" },
+    { time: 74, text: "你要让时间怎么转" },
+    { time: 80, text: "刚错过的怎么换" },
+    { time: 87, text: "不想到醒来缺一块" },
+    { time: 93, text: "我想过忘记" },
+    { time: 96, text: "是最后最坏的打算" },
+    { time: 100, text: "一尘不染" },
+    { time: 104, text: "如此简单" },
+    { time: 136, text: "你羞涩的拍下的相片纸" },
+    { time: 138, text: "第一次的画面" },
+    { time: 140, text: "你让我触动了这按键" },
+    { time: 142, text: "是放松的那面" },
+    { time: 144, text: "再到后来慢慢的瓦解" },
+    { time: 146, text: "在暂时分别那天" },
+    { time: 148, text: "谁能够想到那是我们" },
+    { time: 151, text: "两人之间最后的一面" },
+    { time: 154, text: "明明在这之前" },
+    { time: 157, text: "相拥的如此坚定" },
+    { time: 160, text: "说着一直在身边" },
+    { time: 164, text: "说过要一起看的海" },
+    { time: 168, text: "现在我独自等待" },
+    { time: 171, text: "你要让时间怎么转" },
+    { time: 177, text: "刚错过的怎么换" },
+    { time: 183, text: "不想到醒来缺一块" },
+    { time: 189, text: "我想过忘记" },
+    { time: 192, text: "是最后最坏的打算" },
+    { time: 196, text: "我的无力成为了我的败笔" },
+    { time: 200, text: "我是无法做到真的毫不在意" },
+    { time: 205, text: "我只能做的只是每天" },
+    { time: 209, text: "默念 默念" },
+    { time: 214, text: "忘记是最后最后的最坏打算" },
+    { time: 218, text: "一尘不染" },
+    { time: 222, text: "如此简单" },
+    { time: 228, text: "不断的失重" },
+    { time: 232, text: "直到我失控" },
+    { time: 236, text: "没有任何理由" },
+    { time: 240, text: "你已经看见" },
+    { time: 244, text: "怎会相信我说的我不痛" },
+    { time: 249, text: "你要让时间怎么转" },
+    { time: 255, text: "刚错过的怎么换" },
+    { time: 261, text: "不想到醒来缺一块" },
+    { time: 267, text: "我想过忘记" },
+    { time: 270, text: "是最后最坏的打算" },
+    { time: 274, text: "一尘不染" },
+    { time: 278, text: "如此简单" },
+  ] },
+  { title: "如果呢", artist: "郑润泽", url: "/郑润泽-如果呢.mp3", lyrics: [
+    { time: 34.10, text: "看" },
+    { time: 35.74, text: "幻想中的行星" },
+    { time: 38.06, text: "平行与天际" },
+    { time: 41.83, text: "听" },
+    { time: 43.44, text: "你说过的话语" },
+    { time: 45.61, text: "是那么平静" },
+    { time: 49.43, text: "能记得我的好" },
+    { time: 52.83, text: "也能够忘掉我" },
+    { time: 55.61, text: "迟早" },
+    { time: 56.70, text: "我的心里仍屹立着座城堡" },
+    { time: 64.07, text: "不知为何" },
+    { time: 66.33, text: "无法感受得到" },
+    { time: 68.86, text: "你的不舍" },
+    { time: 71.42, text: "你是如何能够" },
+    { time: 73.95, text: "轻易做得到" },
+    { time: 80.28, text: "如果说是真的爱我" },
+    { time: 83.65, text: "那为何都说不出口" },
+    { time: 86.02, text: "一大堆的所以然呢" },
+    { time: 90.38, text: "我脑海只剩为什么" },
+    { time: 93.75, text: "就让我" },
+    { time: 95.91, text: "放下所有回忆" },
+    { time: 99.27, text: "所有事情不那么清晰" },
+    { time: 102.64, text: "也许" },
+    { time: 104.10, text: "会好" },
+    { time: 105.56, text: "比较" },
+    { time: 115.30, text: "看" },
+    { time: 116.87, text: "幻想中的行星" },
+    { time: 119.21, text: "平行与天际" },
+    { time: 122.95, text: "听" },
+    { time: 124.53, text: "你说过的话语" },
+    { time: 126.71, text: "是那么平静" },
+    { time: 130.50, text: "说记得我的好" },
+    { time: 133.85, text: "也能够忘掉我" },
+    { time: 136.62, text: "迟早" },
+    { time: 138.94, text: "数不清这是第几次" },
+    { time: 141.47, text: "我也不知道" },
+    { time: 144.80, text: "如果说是真的爱我" },
+    { time: 148.16, text: "那为何都说不出口" },
+    { time: 151.53, text: "一大堆的所以然呢" },
+    { time: 154.89, text: "我脑海只剩为什么" },
+    { time: 158.26, text: "就让我" },
+    { time: 160.42, text: "放下所有回忆" },
+    { time: 163.78, text: "所有事情不那么清晰" },
+    { time: 167.15, text: "也许" },
+    { time: 168.60, text: "会好" },
+    { time: 170.07, text: "比较" },
+    { time: 173.40, text: "如果说是真的爱我" },
+    { time: 176.77, text: "那为何都说不出口" },
+    { time: 180.13, text: "一大堆的所以然呢" },
+    { time: 183.50, text: "我脑海只剩为什么" },
+    { time: 186.86, text: "就让我" },
+    { time: 189.02, text: "放下所有回忆" },
+    { time: 192.39, text: "所有事情不那么清晰" },
+    { time: 195.75, text: "也许" },
+    { time: 197.21, text: "会好" },
+    { time: 198.67, text: "比较" },
+    { time: 201.04, text: "也许" },
+    { time: 202.48, text: "会好" },
+    { time: 203.95, text: "比较" },
+  ] },
 ];
 
 // 🛡️ 审查模式开关：设为 true 隐藏境外敏感平台（WhatsApp/Gmail/X），审核通过后改为 false 即可一键恢复
@@ -140,6 +255,8 @@ export default function ContactArchive({ onBack, bgmAudioRef, isBgmPlaying, setI
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isLocalPlaying, setIsLocalPlaying] = useState(false);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [showLyrics, setShowLyrics] = useState(false);
   const localAudioRef = useRef(null);
   const initiallyPlaying = useRef(false);
 
@@ -188,6 +305,10 @@ export default function ContactArchive({ onBack, bgmAudioRef, isBgmPlaying, setI
     audio.onended = () => {
       setCurrentTrackIndex((prev) => (prev + 1) % PLAYLIST.length);
     };
+
+    audio.ontimeupdate = () => {
+      setCurrentTime(audio.currentTime);
+    };
     
     audio.play()
       .then(() => {
@@ -224,6 +345,12 @@ export default function ContactArchive({ onBack, bgmAudioRef, isBgmPlaying, setI
     setCurrentTrackIndex((prev) => (prev + 1) % PLAYLIST.length);
   };
 
+  const formatTime = (t) => {
+    const m = Math.floor(t / 60);
+    const s = Math.floor(t % 60);
+    return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  };
+
   useEffect(() => {
     const handleMouseMove = (e) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 2;
@@ -239,7 +366,6 @@ export default function ContactArchive({ onBack, bgmAudioRef, isBgmPlaying, setI
     { id: 'wechat', icon: WeChatIcon, label: t('social.wechat'), value: 'Xiao xiao yu', color: 'text-emerald-400', activeBg: 'bg-emerald-500', border: 'border-emerald-500/50', hasQR: true, qrLabel: t('social.qr_wechat'), qrImage: wechatQR },
     { id: 'qq', icon: QQIcon, label: 'QQ', value: ' 2933652936', color: 'text-sky-400', activeBg: 'bg-sky-500', border: 'border-sky-500/50', hasQR: true, qrLabel: t('social.qr_qq'), qrImage: qqQR },
     { id: 'whatsapp', icon: WhatsAppIcon, label: t('social.whatsapp'), value: '', color: 'text-green-500', activeBg: 'bg-green-500', border: 'border-green-500/50', hasQR: true, qrLabel: t('social.qr_whatsapp'), qrImage: whatsappQR, sensitive: true },
-    { id: 'douyin', icon: DouyinIcon, label: t('social.douyin'), value: '空', color: 'text-black', activeBg: 'bg-black', border: 'border-white/50', hasQR: true, qrLabel: t('social.qr_douyin'), qrImage: douyinQR },
     { id: '163', icon: Mail, label: 'QQ邮箱', value: ' 2933652936@qq.com', color: 'text-orange-400', activeBg: 'bg-orange-500', border: 'border-orange-500/50' },
     { id: 'gmail', icon: GmailIcon, label: 'Gmail邮箱', value: '空@gmail.com', color: 'text-red-500', activeBg: 'bg-red-500', border: 'border-red-500/50', sensitive: true },
     { id: 'twitter', icon: XIcon, label: 'X', value: '空', color: 'text-black', activeBg: 'bg-black', border: 'border-black/50', sensitive: true },
@@ -315,15 +441,52 @@ export default function ContactArchive({ onBack, bgmAudioRef, isBgmPlaying, setI
                 <MusicVisualizer isPlaying={isLocalPlaying} />
               </div>
 
-              <button 
+              <button
                 onClick={skipTrack}
                 className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 text-white/60 hover:text-cyan-400 hover:bg-cyan-400/10 transition-all cursor-pointer active:scale-90"
               >
                 <SkipForward size={14} fill="currentColor" />
               </button>
+
+              {/* 当前播放时间 */}
+              <span className="text-[10px] font-mono text-white/40 w-10 text-center tabular-nums">
+                {formatTime(currentTime)}
+              </span>
+
+              <button
+                onClick={() => setShowLyrics(!showLyrics)}
+                className={`w-8 h-8 flex items-center justify-center rounded-full transition-all cursor-pointer active:scale-90 ${
+                  showLyrics
+                    ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 shadow-[0_0_12px_rgba(34,211,238,0.3)]'
+                    : 'bg-white/5 text-white/60 hover:text-cyan-400 hover:bg-cyan-400/10'
+                }`}
+                title="歌词"
+              >
+                <FileText size={14} />
+              </button>
            </div>
         </div>
       </motion.header>
+
+      {/* 歌词面板 */}
+      <AnimatePresence>
+        {showLyrics && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="relative z-40 w-full max-w-md mx-auto px-4"
+          >
+            <LyricsPanel
+              lyricsSource={PLAYLIST[currentTrackIndex].lyrics}
+              currentTime={currentTime}
+              songTitle={PLAYLIST[currentTrackIndex].title}
+              songArtist={PLAYLIST[currentTrackIndex].artist}
+              height={160}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* 5. 详情视窗 (居中显示) */}
       <div className="relative z-40 flex-1 w-full flex items-center justify-center p-4 md:p-6">

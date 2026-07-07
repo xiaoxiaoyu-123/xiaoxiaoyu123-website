@@ -347,11 +347,11 @@ function App() {
                 onExploreHobbies={() => {
                   if (audioRef && audioRef.current && isPlaying) {
                     audioRef.current.pause();
-                    audioRef.current.src = "/Terror Jr - 3 Strikes (Explicit)(1).mp3";
+                    audioRef.current.src = "/西罕-我看过(女声版).mp3";
                     const playPromise = audioRef.current.play();
                     if (playPromise !== undefined) playPromise.catch(e => console.warn(e));
                   } else if (audioRef && audioRef.current) {
-                    audioRef.current.src = "/Terror Jr - 3 Strikes (Explicit)(1).mp3";
+                    audioRef.current.src = "/西罕-我看过(女声版).mp3";
                   }
                   setStage('hobbies-detail');
                 }}
