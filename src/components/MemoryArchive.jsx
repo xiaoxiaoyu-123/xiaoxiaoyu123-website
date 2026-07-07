@@ -1,11 +1,32 @@
 import React, { useMemo, useRef, useState, Suspense, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, PerspectiveCamera, useTexture, useVideoTexture, useProgress } from '@react-three/drei';
+import { OrbitControls, PerspectiveCamera, useVideoTexture, useProgress } from '@react-three/drei';
 import * as THREE from 'three';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, MapPin, Calendar, ArrowLeft, Sparkles, Move, Image as ImageIcon, XCircle, SkipForward, Play, Pause, Music, FileText } from 'lucide-react';
 import { PHOTO_DATA } from '../config/photos';
 import LyricsPanel from './LyricsPanel';
+
+// 错误边界：防止 Three.js 图片加载失败导致页面白屏
+class CanvasErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#000', color: '#fff', fontFamily: 'monospace', fontSize: '14px' }}>
+          <p>✨ 记忆星海正在加载中...</p>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 const COLORS = {
     STAR_WHITE: new THREE.Color("#ffffff"),
@@ -326,16 +347,25 @@ const HeartTop = () => {
     );
 };
 
+// 安全加载纹理，失败时返回默认纹理防止崩溃
+function SafeTexture({ url }) {
+  const [texture, setTexture] = useState(null);
+  useEffect(() => {
+    const loader = new THREE.TextureLoader();
+    loader.load(url, (tex) => setTexture(tex), undefined, () => {
+      // 加载失败：用1x1像素默认纹理
+      const fallback = new THREE.DataTexture(new Uint8Array([40, 40, 60, 255]), 1, 1);
+      fallback.needsUpdate = true;
+      setTexture(fallback);
+    });
+    return () => {};
+  }, [url]);
+  return texture ? <meshBasicMaterial map={texture} transparent opacity={1} fog={false} /> : null;
+}
+
 const MediaNode = ({ photo, position, onSelect }) => {
   const meshRef = useRef();
   const [hovered, setHovered] = useState(false);
-  
-  const texture = photo.type === 'video' ? useVideoTexture(photo.url, { 
-    muted: true, 
-    loop: true, 
-    start: true,
-    crossOrigin: "Anonymous"
-  }) : useTexture(photo.url);
 
   useFrame((state) => {
     if (meshRef.current) {
@@ -354,19 +384,34 @@ const MediaNode = ({ photo, position, onSelect }) => {
   return (
     <mesh ref={meshRef} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)} onClick={() => onSelect(photo)}>
       <planeGeometry args={[3.4, 3.4]} />
-      <meshBasicMaterial map={texture} transparent opacity={1} fog={false} />
+      {photo.type === 'video' ? (
+        <VideoTextureMesh url={photo.url} />
+      ) : (
+        <SafeTexture url={photo.url} />
+      )}
       <mesh position={[0, 0, -0.01]}>
         <planeGeometry args={[3.6, 3.6]} />
-        <meshBasicMaterial 
-            color={hovered ? COLORS.HOT_PINK : "#ffffff"} 
-            transparent 
-            opacity={hovered ? 0.4 : 0.15} 
-            fog={false} 
+        <meshBasicMaterial
+            color={hovered ? COLORS.HOT_PINK : "#ffffff"}
+            transparent
+            opacity={hovered ? 0.4 : 0.15}
+            fog={false}
         />
       </mesh>
     </mesh>
   );
 };
+
+// 安全加载视频纹理，失败时静默处理
+function VideoTextureMesh({ url }) {
+  let videoTex;
+  try {
+    videoTex = useVideoTexture(url, { muted: true, loop: true, start: true, crossOrigin: "Anonymous" });
+  } catch(e) {
+    return null;
+  }
+  return <meshBasicMaterial map={videoTex} transparent opacity={1} fog={false} />;
+}
 
 const getNebulaPos = (i, total) => {
     const phi = Math.acos(0.85 - (1.7 * i) / total);
@@ -867,6 +912,7 @@ export default function MemoryArchive({ onBack, bgmAudioRef, isBgmPlaying, setIs
         )}
       </AnimatePresence>
 
+      <CanvasErrorBoundary>
       <Canvas dpr={[1, 1.5]} camera={{ position: [0, 15, 80], fov: 42 }} gl={{ alpha: false, antialias: true, logarithmicDepthBuffer: true }}>
         <color attach="background" args={['#000000']} />
         <Suspense fallback={null}>
@@ -885,8 +931,7 @@ export default function MemoryArchive({ onBack, bgmAudioRef, isBgmPlaying, setIs
         </Suspense>
         <OrbitControls enablePan={false} autoRotate autoRotateSpeed={0.3} maxPolarAngle={Math.PI / 2 + 0.12} minDistance={45} maxDistance={110} />
       </Canvas>
-
-      <AnimatePresence>
+      </CanvasErrorBoundary>      <AnimatePresence>
         {selectedPhoto && (
           <div style={{ position: 'fixed', inset: 0, zIndex: 7000, backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(40px) saturate(200%)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
             <motion.div initial={{ opacity: 0, y: 30, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 30, scale: 0.95 }} style={{ position: 'relative', background: 'rgba(10, 10, 20, 0.4)', border: '1px solid rgba(255, 255, 255, 0.1)', borderLeft: '2px solid rgba(0, 255, 255, 0.2)', borderTop: '1px solid rgba(255, 182, 193, 0.15)', borderRadius: '32px', overflow: 'hidden', maxWidth: '1150px', width: '100%', display: 'flex', flexDirection: 'row', height: '80vh', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)' }}>
