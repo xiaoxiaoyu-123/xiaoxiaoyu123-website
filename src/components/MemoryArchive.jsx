@@ -661,11 +661,11 @@ export default function MemoryArchive({ onBack, bgmAudioRef, isBgmPlaying, setIs
           const res = await fetch(`/api/comments`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ 
-                  photo_id: String(selectedPhoto.id), 
+              body: JSON.stringify({
+                  photo_id: String(selectedPhoto.id),
                   content: newComment,
-                  media_url,
-                  media_type,
+                  media_url: media_url || '',
+                  media_type: media_type || '',
                   nickname: visitorData.name,
                   avatar: visitorData.avatar
               })
