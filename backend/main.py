@@ -189,6 +189,32 @@ async def track_identity(data: VisitorIdentity):
 
 # ========== 留言 ==========
 
+@app.get("/api/messages")
+async def get_messages():
+    """获取所有留言"""
+    conn = get_db()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT id, name, email, content, is_anonymous, created_at FROM messages ORDER BY created_at DESC")
+            rows = cursor.fetchall()
+            data = []
+            for row in rows:
+                data.append({
+                    "id": row[0],
+                    "name": row[1],
+                    "email": row[2],
+                    "content": row[3],
+                    "is_anonymous": bool(row[4]),
+                    "created_at": row[5].strftime("%Y-%m-%d %H:%M:%S") if row[5] else ""
+                })
+            return {"status": "success", "data": data}
+    except pymysql.Error as e:
+        print(f"[数据库错误] get_messages: {e}")
+        return {"status": "success", "data": []}
+    finally:
+        conn.close()
+
+
 @app.post("/api/message")
 async def submit_message(form: MessageForm):
     conn = get_db()
