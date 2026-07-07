@@ -1243,10 +1243,10 @@ export default function HobbiesSection({ onBack, bgmAudioRef, isBgmPlaying, setI
     try {
       const res = await fetch('/api/footprints');
       if (res.ok) {
-         const data = await res.json();
-         // 假设返回的数据是数组结构 [{lat: 1.2, lng: 3.4}, ...]
-         console.log("Fetched footprints:", data.length);
-         setMapData(data);
+         const result = await res.json();
+         const footprints = Array.isArray(result.data) ? result.data : [];
+         console.log("Fetched footprints:", footprints.length);
+         setMapData(footprints);
       }
     } catch (e) {
       console.error("Failed to fetch map data", e);

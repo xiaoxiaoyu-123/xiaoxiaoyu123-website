@@ -13,7 +13,15 @@ import os, uuid, json, pymysql, requests
 from user_agents import parse as parse_ua
 
 # ========== 应用初始化 ==========
-app = FastAPI(title="xiaoxiaoyu123 API", version="1.0.0")
+from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespan(app):
+    """应用启动时自动建表"""
+    init_db()
+    yield
+
+app = FastAPI(title="xiaoxiaoyu123 API", version="1.0.0", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,7 +32,7 @@ app.add_middleware(
 
 # ========== MySQL 数据库配置（由你自己填写） ==========
 DB_CONFIG = {
-    "host": "127.0.0.1",
+    "host": "172.18.0.3",
     "port": 3306,
     "user": "xiaoxiaoyu123",
     "password": "h8ezXeZyhPpiRKXY",
