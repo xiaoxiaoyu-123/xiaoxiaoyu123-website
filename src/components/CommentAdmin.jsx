@@ -1,11 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Sparkles, Check, X as XIcon, RefreshCw, Smartphone, MapPin, AlertTriangle } from 'lucide-react';
+import { Shield, Sparkles, Check, X as XIcon, RefreshCw, Smartphone, MapPin, AlertTriangle, Lock } from 'lucide-react';
 
 const CommentAdmin = ({ onBack }) => {
+    const [verified, setVerified] = useState(false);
+    const [password, setPassword] = useState('');
+    const [verifyError, setVerifyError] = useState('');
+    const [verifying, setVerifying] = useState(false);
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [activeTab, setActiveTab] = useState('pending'); // 'pending' or 'published'
+    const [activeTab, setActiveTab] = useState('pending');
+
+    // 页面加载时检查 sessionStorage
+    useEffect(() => {
+        if (sessionStorage.getItem('admin_verified') === 'true') {
+            setVerified(true);
+        }
+    }, []);
+
+    const handleVerify = async (e) => {
+        e.preventDefault();
+        setVerifying(true);
+        setVerifyError('');
+        try {
+            const res = await fetch('/api/admin/verify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password })
+            });
+            const data = await res.json();
+            if (data.status === 'success') {
+                sessionStorage.setItem('admin_verified', 'true');
+                setVerified(true);
+            } else {
+                setVerifyError('密码错误，请重试');
+            }
+        } catch {
+            setVerifyError('网络错误，请稍后再试');
+        } finally {
+            setVerifying(false);
+        }
+    };
 
     const fetchComments = async (tab = activeTab) => {
         setLoading(true);
@@ -23,8 +58,8 @@ const CommentAdmin = ({ onBack }) => {
     };
 
     useEffect(() => {
-        fetchComments();
-    }, [activeTab]);
+        if (verified) fetchComments();
+    }, [verified, activeTab]);
 
     const handleReview = async (id, status) => {
         try {
@@ -55,6 +90,56 @@ const CommentAdmin = ({ onBack }) => {
         }
     };
 
+    // 未验证 → 显示密码输入界面
+    if (!verified) {
+        return (
+            <div className="w-full h-screen bg-black text-white flex items-center justify-center">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="bg-white/[0.03] border border-white/10 rounded-3xl p-10 w-full max-w-sm backdrop-blur-2xl"
+                >
+                    <div className="flex flex-col items-center gap-6">
+                        <div className="p-4 rounded-2xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-blue-500/20">
+                            <Lock size={32} className="text-blue-400" />
+                        </div>
+                        <h1 className="text-xl font-black tracking-widest uppercase">管理员验证</h1>
+                        <p className="text-white/40 text-sm text-center tracking-wide">请输入管理密码以访问控制台</p>
+
+                        <form onSubmit={handleVerify} className="w-full flex flex-col gap-4">
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="输入密码"
+                                autoFocus
+                                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 outline-none focus:border-blue-500/50 transition-all text-center tracking-widest"
+                            />
+                            {verifyError && (
+                                <p className="text-red-400 text-xs text-center tracking-wide">{verifyError}</p>
+                            )}
+                            <button
+                                type="submit"
+                                disabled={verifying || !password.trim()}
+                                className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold tracking-widest hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-all disabled:opacity-40 cursor-pointer"
+                            >
+                                {verifying ? '验证中...' : '验证身份'}
+                            </button>
+                            <button
+                                type="button"
+                                onClick={onBack}
+                                className="text-white/30 text-sm hover:text-white/60 transition-colors cursor-pointer"
+                            >
+                                返回主页
+                            </button>
+                        </form>
+                    </div>
+                </motion.div>
+            </div>
+        );
+    }
+
+    // 已验证 → 显示审核后台
     return (
         <div className="w-full h-screen bg-black text-white p-4 md:p-10 flex flex-col items-center custom-scrollbar" style={{ overflowY: 'auto' }}>
             <div className="w-full max-w-4xl relative">
@@ -68,14 +153,14 @@ const CommentAdmin = ({ onBack }) => {
                         </div>
                     </div>
                     <div className="flex gap-4">
-                        <button 
+                        <button
                             onClick={() => fetchComments()}
                             className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
                         >
                             <RefreshCw size={16} className={loading ? "animate-spin" : ""} />
                             <span className="text-sm font-bold tracking-widest">刷新情报</span>
                         </button>
-                        <button 
+                        <button
                             onClick={onBack}
                             className="flex items-center gap-2 px-4 py-2 bg-red-500/20 text-red-400 border border-red-500/30 rounded-lg hover:bg-red-500/30 transition-colors cursor-pointer"
                         >
@@ -84,23 +169,23 @@ const CommentAdmin = ({ onBack }) => {
                     </div>
                 </div>
 
-                {/* 选项卡切换 */}
+                {/* 选项卡 */}
                 <div className="flex gap-2 mb-8 bg-white/5 p-1 rounded-xl border border-white/10 w-fit">
-                    <button 
+                    <button
                         onClick={() => setActiveTab('pending')}
                         className={`px-8 py-2.5 rounded-lg text-sm font-bold tracking-[0.2em] transition-all cursor-pointer ${activeTab === 'pending' ? 'bg-gradient-to-r from-blue-600 to-blue-400 text-white shadow-[0_0_20px_rgba(59,130,246,0.4)]' : 'text-white/30 hover:text-white/60'}`}
                     >
-                        待审中 ({activeTab === 'pending' ? comments.length : '...'})
+                        待审中
                     </button>
-                    <button 
+                    <button
                         onClick={() => setActiveTab('published')}
                         className={`px-8 py-2.5 rounded-lg text-sm font-bold tracking-[0.2em] transition-all cursor-pointer ${activeTab === 'published' ? 'bg-gradient-to-r from-purple-600 to-purple-400 text-white shadow-[0_0_20px_rgba(168,85,247,0.4)]' : 'text-white/30 hover:text-white/60'}`}
                     >
-                        已发布 ({activeTab === 'published' ? comments.length : '...'})
+                        已发布
                     </button>
                 </div>
 
-                {/* 列表内容 */}
+                {/* 评论列表 */}
                 {loading ? (
                     <div className="text-center text-white/40 py-20 flex flex-col items-center gap-4">
                         <RefreshCw size={30} className="animate-spin" />
@@ -116,7 +201,7 @@ const CommentAdmin = ({ onBack }) => {
                     <div className="flex flex-col gap-6">
                         <AnimatePresence>
                             {comments.map((comment) => (
-                                <motion.div 
+                                <motion.div
                                     key={comment.id}
                                     initial={{ opacity: 0, y: 15 }}
                                     animate={{ opacity: 1, y: 0 }}
@@ -130,7 +215,6 @@ const CommentAdmin = ({ onBack }) => {
                                     )}
 
                                     <div className={`p-6 flex flex-col md:flex-row gap-6 ${comment.status === -1 ? 'mt-6' : ''}`}>
-                                        {/* 左侧详情 */}
                                         <div className="flex-1 space-y-4">
                                             <div className="flex flex-wrap items-center gap-4 pb-4 border-b border-white/5 text-[11px] text-white/40 tracking-widest overflow-hidden">
                                                 <div className="flex items-center gap-2">
@@ -171,7 +255,6 @@ const CommentAdmin = ({ onBack }) => {
                                             )}
                                         </div>
 
-                                        {/* 右侧动作 */}
                                         <div className="flex flex-row md:flex-col gap-2 min-w-[140px] justify-center border-t md:border-t-0 md:border-l border-white/5 pt-6 md:pt-0 md:pl-6">
                                             {activeTab === 'pending' ? (
                                                 <>
