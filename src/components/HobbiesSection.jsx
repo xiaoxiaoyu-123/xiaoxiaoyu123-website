@@ -246,7 +246,7 @@ const DETAIL_ITEMS = [
     description: '全州天湖骑旅，挑战自我，感受自然的壮丽。骑行在湖光山色之间，每一次踏板都是对身体与心灵的洗礼。', 
     img: null, 
     video: null, 
-    gallery: ['/2025060101.mp4'],
+    gallery: ['/天湖骑旅篇.mp4'],
     accentColor: '#0071eb'
   },
   { 
@@ -256,7 +256,7 @@ const DETAIL_ITEMS = [
     description: '欢迎报考桂林电子科技大学，校园景色优美，学术氛围浓厚，是追求知识与梦想的理想之地。',
     img: null, 
     video: null, 
-    gallery: ['/小孩姐要考桂电_x264.mp4'],
+    gallery: ['/GBC二创_x264.mp4'],
     accentColor: '#af52de'
   },
 
@@ -268,6 +268,16 @@ const DETAIL_ITEMS = [
     img: null,
     video:null,
     gallery:['/校园骑_x264.mp4'],
+    accentColor: '#ff9500'
+  },
+  { 
+    id: 'hobby-3', 
+    category: '', 
+    title: '网课自动化脚本｜解放双手教程',
+    description: '还在手动刷网课、花钱找人代刷？本教程分享全自动网课挂机、自动完成作业脚本，一键解放重复操作，省时省力。',
+    img: null,
+    video:null,
+    gallery:['/刷网课挂脚本教学_x264.mp4'],
     accentColor: '#ff9500'
   },
   { 

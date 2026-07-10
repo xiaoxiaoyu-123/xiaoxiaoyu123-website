@@ -384,11 +384,14 @@ export default function ContactArchive({ onBack, bgmAudioRef, isBgmPlaying, setI
       transition={{ duration: 0.5 }}
       className="fixed inset-0 z-[100] flex flex-col items-center justify-start overflow-hidden font-sans"
     >
-      {/* 动态壁纸层 (完全透明清爽) */}
-      <motion.div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/contact-bg.png')" }}
-      />
+      {/* 动态壁纸层 (孤独摇滚视频) */}
+      <video
+        autoPlay muted loop playsInline
+        className="absolute inset-0 z-0 w-full h-full object-cover"
+        style={{ filter: 'brightness(0.8)' }}
+      >
+        <source src="/孤独摇滚01.mp4" type="video/mp4" />
+      </video>
 
       {/* 顶部导航条 (去模糊，全亮清爽) */}
       <motion.header 

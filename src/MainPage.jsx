@@ -47,6 +47,8 @@ export default function MainPage({
   const [isSending, setIsSending] = useState(false);
   const [sendResult, setSendResult] = useState(null); // { success: bool, text: string }
   const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [visitorCount, setVisitorCount] = useState(0);
+  const [pageViews, setPageViews] = useState(0);
 
   // Determine welcome message based on whether visitor has data
   const hasVisitor = visitorData?.name && visitorData?.avatar;
@@ -80,6 +82,35 @@ export default function MainPage({
         return () => clearTimeout(timer);
     }
   }, [initialScroll]);
+
+  // 访客统计
+  useEffect(() => {
+    // 获取统计
+    fetch('/api/stats')
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'success') {
+          setVisitorCount(data.data.unique_visitors);
+          setPageViews(data.data.page_views);
+        }
+      })
+      .catch(() => {});
+
+    // 记录本次访问
+    const vid = localStorage.getItem('starry_visitor_id') ||
+                localStorage.getItem('bob_visitor_id') ||
+                'anon_' + Math.random().toString(36).slice(2, 10);
+    const alreadyTracked = sessionStorage.getItem('page_tracked');
+    fetch('/api/track_page', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        visitor_id: vid,
+        page_path: window.location.pathname,
+        is_unique: !alreadyTracked
+      })
+    }).then(() => sessionStorage.setItem('page_tracked', 'true')).catch(() => {});
+  }, []);
 
   // 辅助函数：在执行任何跳转动作前保存当前滚动条位置
   const handleNav = (navAction) => {
@@ -356,7 +387,7 @@ export default function MainPage({
             className="col-span-1 row-span-1 p-0 overflow-hidden group min-h-[180px] lg:min-h-0 cursor-pointer"
           >
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-all duration-500 z-10"></div>
-            <img src="/mc01.jpg" alt="Memory Tree Entrance" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <img src="/2026050105.jpg" alt="Memory Tree Entrance" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div className="absolute top-4 left-4 z-20">
                <div className="px-3 py-1 bg-cyan-500/20 backdrop-blur-md rounded-full text-[10px] font-bold border border-cyan-500/30 text-cyan-400">
                   CORE MEMORY // LINK
@@ -669,7 +700,42 @@ export default function MainPage({
               </form>
             </SpotlightCard>
           </div>
-          
+
+          {/* ================= 访客统计面板 ================= */}
+          <div className="mt-1 mb-2">
+            <div className="flex items-center gap-2 mb-6 justify-center">
+              <div className="w-12 h-px bg-gradient-to-r from-transparent to-cyan-500/50"></div>
+              <span className="text-[10px] font-mono text-white/20 tracking-[0.4em] uppercase">Visitor_Stats</span>
+              <div className="w-12 h-px bg-gradient-to-l from-transparent to-cyan-500/50"></div>
+            </div>
+
+            <div className="flex flex-col md:flex-row items-center justify-center gap-10 ">
+              {/* 身份访客 */}
+              <div className="group relative w-96 p-10 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-cyan-500/30 transition-all duration-500">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.5)]"></div>
+                  <span className="text-[10px] font-mono text-white/30 tracking-[0.2em]">UNIQUE VISITORS</span>
+                </div>
+                <div className="text-3xl font-black text-white group-hover:text-cyan-400 transition-colors duration-500">
+                  {visitorCount}
+                </div>
+                <p className="text-white/30 text-xs mt-1 font-mono tracking-wider">位访客</p>
+              </div>
+
+              {/* 访问次数 */}
+              <div className="group relative w-96 p-10 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-cyan-500/30 transition-all duration-500">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.5)]"></div>
+                  <span className="text-[10px] font-mono text-white/30 tracking-[0.2em]">PAGE_VIEWS</span>
+                </div>
+                <div className="text-3xl font-black text-white group-hover:text-cyan-400 transition-colors duration-500">
+                  {pageViews}
+                </div>
+                <p className="text-white/30 text-xs mt-1 font-mono tracking-wider">次网页浏览</p>
+              </div>
+            </div>
+          </div>
+
           {/* ================= 备案信息 (ICP License) ================= */}
           <footer className="w-full py-12 flex justify-center items-center border-t border-white/5 mt-10">
             <a 

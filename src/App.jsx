@@ -189,9 +189,22 @@ function App() {
 
   return (
     <>
-      <div 
-        className="relative min-h-screen w-full flex items-center justify-center font-sans overflow-hidden bg-cover bg-center bg-no-repeat transition-colors duration-1000"
-        style={{ backgroundImage: `url('${stage === 'main' ? '/main-bg.png' : '/bg02.jpg'}')` }}
+      {(stage === 'main' || stage === 'contact-detail') && (
+        <video
+          autoPlay muted loop playsInline
+          className="fixed inset-0 w-full h-full object-cover z-0"
+          style={{ filter: 'brightness(0.8)' }}
+        >
+          <source src={stage === 'main' ? '/bg01.mp4' : '/bg.png'} type="video/mp4" />
+        </video>
+      )}
+      {stage !== 'main' && stage !== 'contact-detail' && (
+        <div className="fixed inset-0 bg-cover bg-center bg-no-repeat z-0"
+          style={{ backgroundImage: `url('/bg02.jpg')` }}
+        />
+      )}
+      <div
+        className="relative min-h-screen w-full flex items-center justify-center font-sans overflow-hidden"
       >
         {/* 全局设置 - 遮光罩减弱至10% */}
         <div className="absolute inset-0 bg-black/10 backdrop-blur-sm z-0 pointer-events-none"></div>
@@ -436,6 +449,9 @@ function App() {
                       setVisitorData(newVisitorData);
                       
                       // 3. [静默异步上报] 使用 POST 通道上报压缩后的身份，解决 URL 溢出并修复构建崩溃
+                      const vid = localStorage.getItem('starry_visitor_id') ||
+                                  localStorage.getItem('bob_visitor_id') ||
+                                  'anon_' + Math.random().toString(36).slice(2, 10);
                       if (data.avatar) {
                         compressAvatar(data.avatar).then((compressedAvatar) => {
                           fetch("/api/track_identity", {
@@ -443,10 +459,22 @@ function App() {
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
                               nickname: data.name || "未同步",
-                              avatar: compressedAvatar || ""
+                              avatar: compressedAvatar || "",
+                              visitor_id: vid
                             })
                           }).catch(err => console.error("Sync Error:", err));
                         });
+                      } else {
+                        // 即使无头像也上报昵称，让访客出现在列表里
+                        fetch("/api/track_identity", {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({
+                            nickname: data.name || "未同步",
+                            avatar: "",
+                            visitor_id: vid
+                          })
+                        }).catch(err => console.error("Sync Error:", err));
                       }
                     }}
                   />
