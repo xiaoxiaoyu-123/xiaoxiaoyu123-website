@@ -53,7 +53,7 @@ export default function MainPage({
   // Determine welcome message based on whether visitor has data
   const hasVisitor = visitorData?.name && visitorData?.avatar;
   const welcomeMessage = hasVisitor
-    ? t('main.welcome_back').replace('Bob Zhang', visitorData.name)
+    ? t('main.welcome_back').replace('Xiao xiao yu', visitorData.name)
     : t('main.welcome_back');
 
   useEffect(() => {
