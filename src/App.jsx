@@ -552,6 +552,7 @@ function App() {
                 setIsBgmPlaying={setIsPlaying}
               />
             )}
+            
 
             {stage === 'expertise-detail' && (
               <ExpertiseArchive 
